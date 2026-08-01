@@ -1,0 +1,114 @@
+<div class="page-content-container">
+  <div class="page-content">
+    <jelly-container>
+      <question-container>
+        Use putty on a Windows 11 machine to copy the npi502_ed25519 file to the raspberry pi
+      </question-container>
+      <answer-container>
+        <p>
+          To transfer a file from Windows 11 to a Raspberry Pi using the PuTTY suite, you will use pscp (PuTTY Secure
+          Copy Client), which comes installed automatically alongside PuTTY.
+        </p>
+
+        <h3>Method 1: Using pscp (Command Line)</h3>
+        <ol>
+          <li>Open Command Prompt or PowerShell on Windows 11:</li>
+
+          <ul>
+            <li>
+              Press <code-text>Win + R</code-text>, type <code-text>cmd</code-text> or
+              <code-text>powershell</code-text>, and press Enter.
+            </li>
+          </ul>
+
+          <li>Navigate to the Directory containing your file (or specify the full path):</li>
+
+          <card-container>
+            <card-header>
+              DOS
+            </card-header>
+            <card-body>
+              <class-name>cd</class-name> C:\path\to\your\file
+            </card-body>
+          </card-container>
+          <li>Run the pscp Command:</li>
+          <card-container>
+            <card-header>
+              DOS
+            </card-header>
+            <card-body>
+              <class-name>pscp</class-name> npi502_ed25519 username&#64;raspberrypi.local:/home/username/
+            </card-body>
+          </card-container>
+          <ul>
+            <li>
+              Replace <code-text>username</code-text> with your Raspberry Pi account username (e.g., pi).
+            </li>
+            <li>
+              Replace <code-text>raspberrypi.local</code-text> with your Raspberry Pi's hostname or IP address (e.g.,
+              <code-text>192.168.1.100</code-text>).
+            </li>
+            <li>
+              <code-text>/home/username/</code-text> is the destination directory on the Raspberry Pi.
+            </li>
+          </ul>
+
+          <li>Authenticate:</li>
+          <ul>
+            <li>If prompted, accept the host key (type <code-text>y</code-text>).</li>
+            <li>Enter your Raspberry Pi user password when prompted.</li>
+          </ul>
+        </ol>
+
+        <h3>Method 2: Using PSFTP (Interactive SFTP Tool)</h3>
+        <p>
+          If you prefer an interactive interface supplied with PuTTY:
+        </p>
+        <ol>
+          <li>
+            Search for PSFTP in your Windows Start Menu and open it.
+          </li>
+
+          <li>
+            Connect to your Raspberry Pi:
+
+            <card-container>
+              <card-header>
+                Plaintext
+              </card-header>
+              <card-body>
+                <class-name>open</class-name> username&#64;192.168.1.100
+              </card-body>
+            </card-container>
+          </li>
+          <li>
+            Enter your password when prompted.
+          </li>
+
+          <li>
+            Upload the file using the put command:
+
+            <card-container>
+              <card-header>
+                Plaintext
+              </card-header>
+              <card-body>
+                <class-name>put</class-name> "C:\path\to\npi502_ed25519"
+              </card-body>
+            </card-container>
+          </li>
+          <li>Type <code-text>quit</code-text> to exit once complete.</li>
+        </ol>
+        <hr />
+        <block-quote>
+          Tip: If you prefer a full drag-and-drop graphical interface, WinSCP integrates natively with PuTTY sessions
+          and saved keys.
+        </block-quote>
+      </answer-container>
+    </jelly-container>
+  </div>
+
+  <div class="right-menu">
+    <prb-sub-menu />
+  </div>
+</div>

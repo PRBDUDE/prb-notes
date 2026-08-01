@@ -1,0 +1,185 @@
+<div class="page-content-container">
+  <div class="page-content">
+    <jelly-container>
+      <question-container>
+        Use putty to copy the npi502 file to the raspberry pi
+      </question-container>
+      <answer-container>
+        <p>
+          To transfer your newly generated npi502_ed25519 keys to your Raspberry Pi using the PuTTY suite, you will
+          want
+          to use PSCP (PuTTY Secure Copy Client). This is a command-line tool that comes bundled with PuTTY.
+        </p>
+        <p>
+          Here is how to get your public key onto your Raspberry Pi (pi5) so you can log in securely.
+        </p>
+        <hr/>
+        <h1>
+          Step 1: Locate the Public Key
+        </h1>
+        <p>
+          Make sure you are copying the public key (.pub), not your private key.
+        </p>
+        <p>
+          If you generated your key on Windows, it is likely sitting in your .ssh directory:
+        </p>
+        <card-container>
+          <card-header>
+            Plaintext
+          </card-header>
+          <card-body>
+            C:\Users\YourUsername\.ssh\npi502_ed25519.pub
+          </card-body>
+        </card-container>
+        <hr/>
+        <h1>
+          Step 2: Use PSCP to Transfer the Key
+        </h1>
+        <p>
+          Open PowerShell or Command Prompt on your Windows machine and run the following command to copy the public
+          key file over to the pi5 user's home directory on the Raspberry Pi:
+        </p>
+        <card-container>
+          <card-header>
+            PowerShell
+          </card-header>
+          <card-body>
+            <class-name>pscp</class-name> ~\.ssh\npi502_ed25519.pub pi5&#64;YOUR_PI_IP_ADDRESS:/home/pi5/
+          </card-body>
+        </card-container>
+        <p>
+          <i>(Replace
+            <code-text>YOUR_PI_IP_ADDRESS</code-text>
+            with your actual local IP address, like
+            <code-text>192.168.1.50</code-text>).</i>
+        </p>
+        <block-quote>
+          Note: PSCP will prompt you for the password of your
+          <code-text>pi5</code-text> account to authorize the transfer.
+        </block-quote>
+        <h1>
+          Step 3: Authorize the Key on the Raspberry Pi
+        </h1>
+        <p>
+          Now that the file is physically on the Pi, you need to append it to the
+          <code-text>authorized_keys</code-text>
+          file so the SSH server knows to trust it.
+        </p>
+        <ol>
+          <li>
+            Open PuTTY and log into your Raspberry Pi as pi5 using your password.
+          </li>
+          <li>
+            Run the following commands to set up the SSH directory and append the key:
+          </li>
+        </ol>
+
+        <indent-1>
+          <card-container>
+            <card-header>
+              Bash
+            </card-header>
+            <card-body>
+              <div>
+                <prb-comment># Ensure the .ssh directory exists with the correct permissions</prb-comment>
+              </div>
+              <div>
+                <class-name>mkdir</class-name> -p ~/.ssh
+              </div>
+              <div>
+                <class-name>chmod</class-name> 700 ~/.ssh
+              </div>
+              <br/>
+              <div>
+                <prb-comment># Append the transferred public key to the authorized_keys file</prb-comment>
+              </div>
+              <div>
+                <class-name>cat</class-name> ~/npi502_ed25519.pub >> ~/.ssh/authorized_keys
+              </div>
+              <div>
+                <class-name>chmod</class-name> 600 ~/.ssh/authorized_keys
+              </div>
+              <br/>
+              <div>
+                <prb-comment># Clean up the loose file from your home folder</prb-comment>
+              </div>
+              <div>
+                <class-name>rm</class-name> ~/npi502_ed25519.pub
+              </div>
+            </card-body>
+          </card-container>
+        </indent-1>
+        <hr/>
+        <h1>
+          Step 4: Configure PuTTY to Use Your Private Key
+        </h1>
+        <p>
+          To use this key for future passwordless logins via the PuTTY graphical interface,
+          you need to point PuTTY to your private key.
+        </p>
+
+        <p>
+          Because PuTTY uses its own key format (
+          <code-text>.ppk</code-text>),
+          you need to do a quick conversion first:
+        </p>
+        <h2>
+          A. Convert the Key with PuTTYgen
+        </h2>
+        <ol>
+          <li>
+            Launch PuTTYgen (PuTTY Key Generator).
+          </li>
+          <li>
+            Click File → Load private key.
+          </li>
+          <li>
+            Change the file type filter in the bottom right from "PuTTY Private Key Files (.ppk)" to "All Files
+            (.*)".
+          </li>
+          <li>
+            Navigate to C:\Users\YourUsername\.ssh\ and select your private key: npi502_ed25519.
+          </li>
+          <li>
+            Once loaded, click Save private key and save it in the same directory as npi502.ppk.
+          </li>
+        </ol>
+        <h2>
+          B. Add the Key to Your PuTTY Session
+        </h2>
+        <ol>
+          <li>
+            Open PuTTY.
+          </li>
+          <li>
+            In the left sidebar, navigate to Connection → SSH → Auth → Credentials.
+          </li>
+          <li>
+            Look for the field labeled Private key file for authentication and click <br/>Browse....
+          </li>
+          <li>
+            Select your newly saved
+            <code-text>npi502.ppk</code-text> file.
+          </li>
+          <li>
+            Go back to the Session category at the very top of the left sidebar.
+          </li>
+          <li>
+            Enter your Pi's IP address under Host Name.
+          </li>
+          <li>
+            Type a name in the Saved Sessions box (e.g.,
+            <code-text>Raspberry Pi 5</code-text>) and click <br/>Save.
+          </li>
+        </ol>
+        <p>
+          Now, you can just double-click your saved session to log in instantly using your custom SSH key!
+        </p>
+      </answer-container>
+    </jelly-container>
+  </div>
+
+  <div class="right-menu">
+    <prb-sub-menu/>
+  </div>
+</div>

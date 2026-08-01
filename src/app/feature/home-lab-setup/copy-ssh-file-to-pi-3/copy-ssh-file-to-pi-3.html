@@ -1,0 +1,128 @@
+<div class="page-content-container">
+  <div class="page-content">
+    <jelly-container>
+      <question-container>
+        Use putty on a Windows 11 machine to copy the npi502_ed25519 file to the raspberry pi
+      </question-container>
+      <answer-container>
+        <p>
+          While standard PuTTY is a terminal emulator designed for remote console sessions, the PuTTY suite includes a
+          dedicated command-line file transfer tool called PSCP (<code-text>pscp.exe</code-text>). Additionally,
+          Windows 11 includes built-in OpenSSH tools (<code-text>scp</code-text>).
+        </p>
+        <p>
+          Here are the step-by-step methods to transfer <code-text>npi502_ed25519</code-text> to your Raspberry Pi.
+        </p>
+        <hr />
+        <h3>Method 1: Using PSCP (PuTTY Secure Copy)</h3>
+        <p>
+          If you installed the full PuTTY package installer, pscp.exe is already in your
+          system PATH.
+        </p>
+        <ol>
+          <li>
+            Open PowerShell or Command Prompt on Windows 11 (<code-text>Win + X</code-text> &rarr; Terminal or Command
+            Prompt).
+          </li>
+          <li>
+            Navigate to the folder where <code-text>npi502_ed25519</code-text> is located (or provide its full path).
+          </li>
+          <li>
+            Run the PSCP command:
+          </li>
+        </ol>
+        <card-container>
+          <card-header>
+            DOS
+          </card-header>
+          <card-body>
+            <class-name>pscp</class-name> npi502_ed25519 pi&#64;raspberrypi.local:/home/pi/
+          </card-body>
+        </card-container>
+
+        <block-quote>
+          Note:
+          <ul>
+            <li>
+              Replace <code-text>pi</code-text> with your actual Raspberry Pi username.
+            </li>
+            <li>
+              Replace <code-text>raspberrypi.local</code-text> with your Pi’s hostname or
+              IP address (e.g., <code-text>192.168.1.100</code-text>).
+            </li>
+            <li>
+              If you use a custom SSH port (other than 22), add the <code-text>-P port_number</code-text> flag
+              (e.g., <code-text>pscp -P 2222 npi502_ed25519 pi&#64;192.168.1.100:/home/pi/</code-text>).
+            </li>
+          </ul>
+        </block-quote>
+        <hr />
+        <h3>Method 2: Using Native Windows 11 Terminal (<code-text>scp</code-text>)</h3>
+        <p>
+          Windows 11 includes OpenSSH by default, which allows you to use standard scp without needing PuTTY tools:
+        </p>
+        <card-container>
+          <card-header>
+            PowerShell
+          </card-header>
+          <card-body>
+            <class-name>scp</class-name> C:\path\to\npi502_ed25519 pi&#64;raspberrypi.local:~/.ssh/
+          </card-body>
+        </card-container>
+        <p>
+          (This example copies it directly to the hidden ~/.ssh directory on the Raspberry Pi if you intend to use it as
+          an SSH key).
+        </p>
+        <hr />
+        <h3>Method 3: Using WinSCP (Graphical UI)</h3>
+        <p>
+          If you prefer a drag-and-drop interface that integrates directly with PuTTY saved sessions:
+        </p>
+        <ol>
+          <li>
+            Download and open WinSCP.
+          </li>
+          <li>
+            Select SFTP as the file protocol.
+          </li>
+          <li>
+            Enter your Raspberry Pi's Host name, User name, and Password (or import your saved session from PuTTY).
+          </li>
+          <li>
+            Click Login.
+          </li>
+          <li>
+            Drag <code-text>npi502_ed25519</code-text> from the left panel (Windows) to the right panel (Raspberry Pi).
+          </li>
+        </ol>
+        <h3>
+          Setting Correct File Permissions (Important)
+        </h3>
+        <p>
+          If npi502_ed25519 is an SSH private or public key, update its permissions on the Raspberry Pi after
+          transfer:
+        </p>
+        <ol>
+          <li>
+            Open your PuTTY session and log into your Raspberry Pi.
+          </li>
+          <li>
+            Run the following command to restrict permissions:
+          </li>
+        </ol>
+        <card-container>
+          <card-header>
+            Bash
+          </card-header>
+          <card-body>
+            <class-name>chmod</class-name> 600 ~/npi502_ed25519
+          </card-body>
+        </card-container>
+      </answer-container>
+    </jelly-container>
+  </div>
+
+  <div class="right-menu">
+    <prb-sub-menu />
+  </div>
+</div>

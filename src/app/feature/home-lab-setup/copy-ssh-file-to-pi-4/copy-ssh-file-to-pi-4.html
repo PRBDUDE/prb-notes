@@ -1,0 +1,128 @@
+<div class="page-content-container">
+  <div class="page-content">
+    <jelly-container>
+      <question-container>
+        Use putty on a Windows 11 machine to copy the npi502_ed25519 file to the raspberry pi
+      </question-container>
+      <answer-container>
+        <p>
+          To copy a file from Windows 11 to your Raspberry Pi using PuTTY's suite of tools, you can use
+          <code-text>pscp</code-text> (PuTTY Secure Copy Client), which comes bundled with the standard
+          PuTTY installation.
+        </p>
+
+        <h3>Method 1: Using pscp (PuTTY Command Line Tool)</h3>
+        <p>
+          If you installed PuTTY via the standard installer, pscp.exe is usually available in your system path.
+        </p>
+
+        <h3>1. Open PowerShell or Command Prompt</h3>
+        <p>
+          Press <code-text>Win + X</code-text> and select PowerShell or Terminal.
+        </p>
+
+        <h3>2. Run the <code-text>pscp</code-text> Command</h3>
+        <p>
+          Navigate to the directory where your file is located, or provide the full path to
+          <code-text>npi502_ed25519</code-text>:
+        </p>
+
+        <card-container>
+          <card-header>
+            PowerShell
+          </card-header>
+          <card-body>
+            <class-name>pscp</class-name> C:\path\to\npi502_ed25519 pi_username&#64;raspberrypi_ip:/home/pi_username/
+          </card-body>
+        </card-container>
+        <ul>
+          <li>
+            Replace <code-text>C:\path\to\npi502_ed25519</code-text> with the actual path to your local file.
+          </li>
+          <li>
+            Replace <code-text>pi_username</code-text> with your username on the Raspberry Pi (e.g.,
+            <code-text>pi</code-text> or your custom user).
+          </li>
+          <li>
+            Replace <code-text>raspberrypi_ip</code-text> with your Raspberry Pi's IP address or hostname
+            (e.g., <code-text>192.168.1.50</code-text> or
+            <code-text>raspberrypi.local</code-text>).
+          </li>
+        </ul>
+
+        <block-quote>
+          Note: If pscp is not recognized as a command, navigate directly to where PuTTY is installed
+          before running it:
+
+          <card-container>
+            <card-header>
+              PowerShell
+            </card-header>
+            <card-body>
+              <class-name>cd</class-name> "C:\Program Files\PuTTY" .\pscp.exe C:\path\to\npi502_ed25519 pi_username&#64;raspberrypi_ip:/home/pi_username/
+            </card-body>
+          </card-container>
+        </block-quote>
+        <h3>
+          Method 2: Using PSFTP (Interactive Shell)
+        </h3>
+        <p>
+          If you prefer an interactive interface within the PuTTY suite:
+        </p>
+
+        <ol>
+          <li>
+            Launch PSFTP from your Windows Start Menu.
+          </li>
+          <li>
+            Connect to your Raspberry Pi:
+
+            <card-container>
+              <card-header>
+                Plaintext
+              </card-header>
+              <card-body>
+                <class-name>open</class-name> pi_username&#64;raspberrypi_ip
+              </card-body>
+            </card-container>
+          </li>
+          <li>
+            Enter your password when prompted.
+          </li>
+          <li>
+            Upload the file using put:
+
+            <card-container>
+              <card-header>
+                Plaintext
+              </card-header>
+              <card-body>
+                <class-name>put</class-name> "C:\path\to\npi502_ed25519"
+              </card-body>
+            </card-container>
+          </li>
+        </ol>
+        <hr />
+
+        <h3>Alternative: Built-in Windows <code-text>scp</code-text></h3>
+        <p>
+          Windows 11 includes OpenSSH natively. If you don't specifically need PuTTY's tool, you can copy
+          the file directly in PowerShell using standard scp:
+        </p>
+
+        <card-container>
+          <card-header>
+            PowerShell
+          </card-header>
+          <card-body>
+            scp C:\path\to\npi502_ed25519 pi_username&#64;raspberrypi_ip:/home/pi_username/
+          </card-body>
+        </card-container>
+      </answer-container>
+    </jelly-container>
+  </div>
+
+  <div class="right-menu">
+    <prb-sub-menu />
+  </div>
+</div>
