@@ -1,0 +1,350 @@
+<div class="page-content-container">
+  <div class="page-content">
+    <jelly-container>
+      <question-container>
+        Using module federation, provide instructions to create an angular MFE to create a menu to be shared between
+        multiple MFEs
+      </question-container>
+      <answer-container>
+        <p>
+          Creating a shared menu using Module Federation in Angular is a powerful way to ensure UI consistency without
+          the
+          "dependency hell" of NPM packages. By using this approach, you can update the menu in one place and have it
+          reflect across all consuming applications instantly.
+        </p>
+
+        <p>
+          Here is the step-by-step guide to setting this up.
+        </p>
+
+        <hr />
+
+        <h1>1. Prerequisites & Setup</h1>
+        <p>
+          Ensure you have the Angular CLI installed. You will also need the &#64;angular-architects/module-federation
+          plugin,
+          which simplifies the Webpack configuration for Angular.
+        </p>
+
+        <card-container>
+          <card-header>
+            Bash
+          </card-header>
+          <card-body>
+            <prb-comment># In your "Menu" MFE project</prb-comment>
+            <div>ng add &#64;angular-architects/module-federation --project menu-app --port 4201</div>
+          </card-body>
+        </card-container>
+
+        <hr />
+
+        <h1>2. Create the Menu Component</h1>
+        <p>
+          In your Menu MFE, create the component that you want to share.
+        </p>
+
+        <ol>
+          <li>
+            <prb-note>Generate the component:</prb-note> ng generate component shared-menu
+          </li>
+
+          <li>
+            <prb-note>Define the logic:</prb-note> Ensure your menu uses standard Angular routerLink for navigation.
+          </li>
+
+          <li>
+            <prb-note>State Management:</prb-note> If the menu needs to show user data (e.g., "Welcome, Admin"), ensure
+            that data is passed via &#64;Input () or a shared service.
+          </li>
+        </ol>
+
+        <hr />
+
+        <h1>3. Expose the Component (The "Remote")</h1>
+        <p>
+          You need to tell Module Federation which component to make public. Open the webpack.config.js in your Menu
+          MFE project.
+        </p>
+
+        <card-container>
+          <card-header>
+            JavaScript
+          </card-header>
+          <card-body>
+            <div>
+              <key-word>const</key-word>
+              &#123; shareAll, withModuleFederationPlugin &#125; =
+              <class-name>require</class-name>(
+              <prb-string>'&#64;angular-architects/module-federation/webpack'</prb-string>);
+            </div>
+            <br/>
+
+            <div>
+              <class-name>module</class-name>.exports = withModuleFederationPlugin(&#123;
+            </div>
+            <indent-1>
+              <prb-property>name</prb-property>:
+              <prb-string>'menu_mfe'</prb-string>,
+              <prb-comment>// The name consumers will use</prb-comment>
+            </indent-1>
+            <indent-1>
+              <prb-property>exposes</prb-property>: &#123;
+            </indent-1>
+            <indent-2>
+              <prb-comment>// Key: The name to import, Value: Path to the component/module</prb-comment>
+            </indent-2>
+            <indent-2>
+              <prb-string>'./MenuComponent'</prb-string>:
+              <prb-string>'./src/app/shared-menu/shared-menu.component.ts'</prb-string>,
+            </indent-2>
+            <indent-1>&#125;,</indent-1>
+            <indent-1>
+              <prb-property>shared</prb-property>: &#123;
+            </indent-1>
+            <indent-2>
+              ...shareAll(&#123; <prb-property>singleton</prb-property>:
+              <prb-property>true</prb-property>,
+              <prb-property>strictVersion</prb-property>:
+              <prb-property>true</prb-property>,
+              <prb-property>requiredVersion</prb-property>:
+              <prb-string>'auto'</prb-string> &#125;),
+            </indent-2>
+            <indent-1>&#125;,</indent-1>
+            &#125;);
+          </card-body>
+        </card-container>
+
+        <h1>4. Consume the Menu (The "Shell" or "Host")</h1>
+        <p>
+          Now, head to the application(s) that will display the menu.
+        </p>
+
+        <ol>
+          <li>
+            <prb-note>Add Federation:</prb-note> ng add &#64;angular-architects/module-federation --project shell-app
+            --port 4200
+          </li>
+          <li>
+            <prb-note>Configure the Host:</prb-note> In the webpack.config.js of your Shell app, point to the remote:
+          </li>
+        </ol>
+
+        <card-container>
+          <card-header>
+            JavaScript
+          </card-header>
+          <card-body>
+            <div>
+              <class-name>module</class-name>.exports = withModuleFederationPlugin(&#123;
+            </div>
+            <indent-1>
+              <prb-property>remotes</prb-property>: &#123;
+            </indent-1>
+            <indent-2>
+              <prb-string>"menu_mfe"</prb-string>:
+              <prb-string>"http://localhost:4201/remoteEntry.js"</prb-string>,
+            </indent-2>
+            <indent-1>&#125;,</indent-1>
+            <indent-1>
+              <prb-property>shared</prb-property>: &#123;
+            </indent-1>
+            <indent-2>
+              ...shareAll(&#123; <prb-property>singleton</prb-property>:
+              <prb-property>true</prb-property>,
+              <prb-property>strictVersion</prb-property>:
+              <prb-property>true</prb-property>,
+              <prb-property>requiredVersion</prb-property>:
+              <prb-string>'auto'</prb-string> &#125;),
+            </indent-2>
+            <indent-1>&#125;,</indent-1>
+            &#125;);
+          </card-body>
+        </card-container>
+
+        <h1>5. Load the Remote Component</h1>
+        <p>
+          In Angular, you can load a remote component dynamically using the loadRemoteModule helper provided by the
+          library.
+        </p>
+
+        <p>
+          <prb-note>Inside your Shell's</prb-note> app.component.ts:
+        </p>
+
+        <card-container>
+          <card-header>
+            TypeScript
+          </card-header>
+          <card-body>
+            <div>
+              <key-word>import</key-word> &#123; loadRemoteModule &#125;
+              <key-word>from</key-word>
+              <prb-string>'&#64;angular-architects/module-federation'</prb-string>;
+            </div>
+            <div>
+              <key-word>import</key-word> &#123; Component, ViewChild, ViewContainerRef, OnInit &#125;
+              <key-word>from</key-word>
+              <prb-string>'&#64;angular/core'</prb-string>;
+            </div>
+            <br />
+            <div>
+              <class-name>&#64;Component</class-name>(&#123; ... &#125;)
+            </div>
+            <div>
+              <key-word>export class</key-word>&nbsp;
+              <method-name>AppComponent implements OnInit</method-name> &#123;
+            </div>
+            <indent-1>
+              <class-name>&#64;ViewChild</class-name>(
+              <prb-string>'menuContainer'</prb-string>, &#123;
+              <prb-property>read</prb-property>: ViewContainerRef,
+              <prb-property>static</prb-property>:
+              <prb-property>true</prb-property> &#125;)
+            </indent-1>
+            <indent-1>
+              container!: ViewContainerRef;
+            </indent-1>
+            <br />
+            <indent-1>
+              <key-word>async</key-word>&nbsp;
+              <method-name>ngOnInit</method-name>() &#123;
+            </indent-1>
+            <indent-2>
+              <key-word>const</key-word> Component =
+              <key-word>await</key-word> loadRemoteModule(&#123;
+            </indent-2>
+            <indent-3>
+              <prb-property>type</prb-property>:
+              <prb-string>'module'</prb-string>,
+            </indent-3>
+            <indent-3>
+              <prb-property>remoteEntry</prb-property>:
+              <prb-string>'http://localhost:4201/remoteEntry.js'</prb-string>,
+            </indent-3>
+            <indent-3>
+              <prb-property>exposedModule</prb-property>:
+              <prb-string>'./MenuComponent'</prb-string>
+            </indent-3>
+            <indent-2>
+              &#125;).<key-word>then</key-word>(m => m.SharedMenuComponent);
+            </indent-2>
+            <br />
+            <indent-2>
+              <class-name>this</class-name>.container.createComponent(Component);
+            </indent-2>
+            <indent-1>&#125;</indent-1>
+            &#125;
+          </card-body>
+        </card-container>
+
+        <p>
+          <prb-note>Inside your</prb-note> app.component.html:
+        </p>
+
+        <card-container>
+          <card-header>
+            HTML
+          </card-header>
+          <card-body>
+            <div>
+              &lt;<prb-property>ng-container</prb-property> #<prb-property>menuContainer</prb-property>&gt;&lt;/
+              <prb-property>ng-container</prb-property>&gt;
+            </div>
+            <div>
+              &lt;<prb-property>router-outlet</prb-property>&gt;&lt;/<prb-property>router-outlet</prb-property>&gt;
+            </div>
+          </card-body>
+        </card-container>
+
+        <h1>6. Best Practices for Shared Menus</h1>
+        <h2>Use a Shared Service for Navigation</h2>
+        <p>
+          If your menu needs to highlight the "active" tab based on where the user is in the Shell, ensure you are
+          sharing the <code-text>&#64;angular/router</code-text> as a singleton.
+        </p>
+
+        <block-quote>
+          <prb-note>Note:</prb-note>
+          In both <code-text>webpack.config.js</code-text> files, the <code-text>singleton:
+          true</code-text>
+          setting is vital. This ensures that the Menu MFE uses the same Router instance as the Shell, allowing
+          routerLinkActive to work across MFE boundaries.
+        </block-quote>
+
+        <h2>Handling Assets</h2>
+        <p>
+          If your menu uses local images or icons (e.g., <code-text>assets/logo.png</code-text>), those paths
+          will
+          break
+          when loaded in the Shell
+          because the Shell will look for them on its own server (port 4200) instead of the Menu's server (port 4201).
+        </p>
+
+        <ul>
+          <li>
+            <prb-note>Fix:</prb-note>
+            Use absolute URLs for assets in shared components during development, or configure a public
+            path in your Webpack config.
+          </li>
+        </ul>
+
+        <h2>Error Handling</h2>
+        <p>
+          Always wrap your <code-text>loadRemoteModule</code-text> in a <code-text>try/catch block</code-text>.
+          If the Menu MFE server goes down, you don't want your entire Shell application to white-screen. You can
+          provide a "Fallback Menu" or a simple error message instead.
+        </p>
+
+        <hr />
+        <h1>Critical Success Factors</h1>
+        <ul>
+          <li>
+            <p>
+              <prb-note>Routing Coordination:</prb-note>
+              For the menu links to work, both the Menu MFE and the Shell app must
+              share
+              the
+              same Router
+              instance. Because we set singleton: true in the Webpack config, Angular will share the same router
+              service
+              across
+              both apps.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <prb-note>Version Matching:</prb-note>
+              Ensure that all MFEs use the same major version of Angular. While Module
+              Federation
+              allows different versions, Angular's dependency tree is strict; having two versions of &#64;angular/core
+              running
+              simultaneously will likely break the application.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <prb-note>Deployment:</prb-note>
+              When you deploy, the remoteEntry.js URL in your Shell configuration must be
+              updated
+              to
+              the production URL of your Menu MFE.
+            </p>
+
+            <!--            <card-container class="padded">-->
+            <!--                <prb-note>Pro Tip:</prb-note>-->
+            <!--                Use an Asset Map or a simple JSON file to store your remote URLs. This allows you to-->
+            <!--                change the-->
+            <!--                Menu MFE's location without re-building the Shell application.-->
+            <!--            </card-container>-->
+          </li>
+        </ul>
+      </answer-container>
+    </jelly-container>
+  </div>
+
+  <div class="right-menu">
+    <prb-sub-menu />
+  </div>
+</div>
