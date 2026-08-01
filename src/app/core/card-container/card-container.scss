@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  font-size: inherit;
+  color: inherit;
+  background: var(--color-card-container-background);
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.padded {
+  padding: 1em;
+}

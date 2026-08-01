@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  font-size: 14pt;
+  color: var(--color-card-text);
+  //color: inherit;
+  background: var(--color-card-background);
+  border-radius: 10px 10px 0 0;
+  border-bottom: 2px solid var(--color-card-margin);
+  padding: 10px;
+}
