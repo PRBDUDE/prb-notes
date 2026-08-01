@@ -1,0 +1,206 @@
+<div class="page-content-container">
+  <div class="page-content">
+    <jelly-container>
+      <question-container>
+        How do I setup a domain name for use in a private home lab which is not accessible outside?
+      </question-container>
+
+      <answer-container>
+        <p>
+          Setting up a local domain name for an isolated home lab is a fantastic project. It makes accessing your
+          self-hosted services significantly easier—allowing you to use clean URLs like
+          <code-text>[http://proxmox.home.arpa](http://proxmox.home.arpa)</code-text> or
+          <code-text>[http://jellyfin.home.arpa](http://jellyfin.home.arpa)</code-text>
+          instead of memorizing a string of IP addresses and port numbers.
+        </p>
+
+        <p>
+          Here is a step-by-step guide on how to design and set up your private domain name.
+        </p>
+        <hr />
+
+        <h1>Step 1: Choose Your Domain Strategy</h1>
+        <p>
+          There are two primary ways to approach choosing your domain extension (TLD):
+        </p>
+
+        <h2>
+          Option A: Use a Reserved Local Domain (Completely Free)
+        </h2>
+
+        <p>
+          If you want a 100% offline, local-only namespace without buying anything, you should use
+          <code-text>.home.arpa</code-text>.
+        </p>
+
+        <ul>
+          <li>
+            Why? It is officially designated by the IETF (RFC 8375) specifically for home networks.
+          </li>
+          <li>
+            Avoid: Older practices like using
+            <code-text>.local</code-text>
+            (which is reserved for mDNS/Bonjour and can cause routing lag and device issues) or
+            <code-text>.lan</code-text>
+            (which is not officially standardized).
+          </li>
+        </ul>
+
+        <h2>
+          Option B: Purchase a Real Domain (Recommended)
+        </h2>
+        <p>
+          You can buy a cheap domain (e.g., yourname.com or yourname.tech for ~$10/year) from a registrar like
+          Cloudflare.
+        </p>
+
+        <ul>
+          <li>
+            Why? Even if you never point it to your public home IP address (keeping it 100% private), owning the
+            domain allows you to easily generate valid SSL certificates (HTTPS) via Let’s Encrypt using a "DNS-01
+            challenge." This gives you that clean, green lock icon in your browser without exposing your lab to the
+            internet.
+          </li>
+          <li>
+            You can dedicate a subdomain for your internal network, like <code-text>*.lab.yourname.com</code-text>.
+          </li>
+        </ul>
+        <hr />
+
+        <h1>
+          Step 2: Set Up a Local DNS Server
+        </h1>
+        <p>
+          Since your domain won't exist on the public internet, you need a local server on your network to act as the
+          "phone book."
+        </p>
+
+        <h2>
+          Popular DNS Software Options:
+        </h2>
+        <ol>
+          <li>
+            Pi-hole or AdGuard Home: Highly recommended. They are incredibly easy to manage via a web UI, run
+            perfectly on a Raspberry Pi or inside Docker, and double as network-wide ad blockers.
+          </li>
+
+          <li>
+            Your Router (OPNsense / pfSense / OpenWrt): If you use a custom router/firewall, they have built-in DNS
+            resolvers (like Unbound or Dnsmasq) where you can easily configure local DNS overrides.
+          </li>
+
+          <li>
+            Technitium DNS / Bind9: Great if you want to learn enterprise-level DNS engineering.
+          </li>
+        </ol>
+
+        <h2>
+          Configuration Example (e.g., Pi-hole or AdGuard Home):
+        </h2>
+        <ul>
+          <li>
+            Navigate to the Local DNS Records or DNS Rewrites section of your DNS server's dashboard.
+          </li>
+          <li>
+            Add a record:
+          </li>
+          <ul>
+            <li>
+              Domain:
+              <code-text>proxmox.home.arpa</code-text>
+              (or
+              <code-text>proxmox.lab.yourdomain.com</code-text>)
+            </li>
+            <li>
+              IP Address:
+              <code-text>192.168.1.100</code-text> (the static IP of your server)
+            </li>
+          </ul>
+        </ul>
+        <hr />
+        <h1>
+          Step 3: Tell Your Network to Use Your DNS Server
+        </h1>
+        <p>
+          For your devices to resolve your new local domain, they must use your new local DNS server instead of public
+          ones like Google
+          (<code-text>8.8.8.8</code-text>) or Cloudflare
+          (<code-text>1.1.1.1</code-text>).
+        </p>
+        <ol>
+          <li>
+            Log into your main home router.
+          </li>
+          <li>
+            Locate the DHCP Server settings.
+          </li>
+          <li>
+            Change the DNS Server IP address to point to the local IP address of your Pi-hole/DNS server.
+          </li>
+          <li>
+            Renew your devices' network connections (or restart them) so they grab the new DNS settings.
+          </li>
+        </ol>
+        <hr />
+
+        <h1>
+          Step 4: Handle Ports with a Reverse Proxy (Optional, but Highly Recommended)
+        </h1>
+        <p>
+          By default, DNS only maps a name to an IP address. If your service runs on a port like
+          <code-text>192.168.1.100:8006</code-text> (like Proxmox) or
+          <code-text>192.168.1.100:8096</code-text> (like Jellyfin), typing
+          <code-text>proxmox.home.arpa</code-text> in your browser will
+          fail because it defaults to port
+          <code-text>80</code-text> (HTTP) or
+          <code-text>443</code-text> (HTTPS).
+        </p>
+        <p>
+          To fix this and get rid of port numbers in your URLs, set up a Reverse Proxy:
+        </p>
+
+        <h3>
+          Recommended Proxies:
+        </h3>
+        <ul>
+          <li>
+            Caddy: Super lightweight and incredibly easy to configure.
+          </li>
+          <li>
+            Nginx Proxy Manager: Provides a clean, beginner-friendly web UI.
+          </li>
+        </ul>
+
+        <h3>
+          How it works:
+        </h3>
+        <ol>
+          <li>
+            Point your local DNS records for all your services (e.g.,
+            <code-text>jellyfin.home.arpa</code-text>,
+            <code-text>proxmox.home.arpa</code-text>) to the
+            IP of your Reverse Proxy.
+          </li>
+          <li>
+            Configure the Reverse Proxy to listen on ports
+            <code-text>80</code-text> and
+            <code-text>443</code-text>.
+          </li>
+
+          Tell the proxy: "<em>If traffic comes in for
+          <code-text>jellyfin.home.arpa</code-text>, forward it internally to
+          <code-text>192.168.1.100:8096</code-text>.</em>"
+        </ol>
+        <p>
+          Now, typing
+          <code-text>jellyfin.home.arpa</code-text> will seamlessly take you to your service without exposing anything
+          to the outside world!
+        </p>
+      </answer-container>
+    </jelly-container>
+  </div>
+
+  <div class="right-menu">
+    <prb-sub-menu />
+  </div>
+</div>
