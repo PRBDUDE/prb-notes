@@ -1,0 +1,661 @@
+<div class="page-content-container">
+  <div class="page-content">
+    <jelly-container>
+      <question-container>
+        angular 22 - example of IdleService
+      </question-container>
+      <answer-container>
+        <p>
+          In Angular 22, the ecosystem has firmly embraced a Signal-First and Zoneless-by-default architecture.
+        </p>
+        <p>
+          Building an <code-text>IdleService</code-text> without relying on legacy <code-text>Zone.js</code-text>
+          execution paradigms requires leveraging Angular's fine-grained
+          reactivity using native Signals, effect(), and lean RxJS event integration. By tracking common DOM
+          interactions
+          outside of global change cycles and handling updates through Signals, you keep your application highly
+          performant
+          and secure.
+        </p>
+        <p>
+          Here is a complete modern implementation of an <code-text>IdleService</code-text> tailored for Angular 22.
+        </p>
+        <hr />
+        <h1>1. The Idle Service (<code-text>idle.service.ts</code-text>)</h1>
+        <p>
+          This service maps user activity to an active timer. If inactivity hits the timeout, it flips an
+          isIdle state and triggers a countdown using signal states that your template can instantly track.
+        </p>
+        <card-container>
+          <card-header>
+            TypeScript
+          </card-header>
+          <card-body>
+            <div>
+              <key-word>import</key-word> &#123; Injectable, inject, signal, effect, OnDestroy &#125;
+              <key-word>from</key-word>
+              <prb-string>'&#64;angular/core'</prb-string>;
+            </div>
+            <div>
+              <key-word>import</key-word> &#123; Router &#125;
+              <key-word>from</key-word>
+              <prb-string>'&#64;angular/router'</prb-string>;
+            </div>
+            <div>
+              <key-word>import</key-word> &#123; Subject, fromEvent, merge, Subscription &#125;
+              <key-word>from</key-word>
+              <prb-string>'rxjs'</prb-string>;
+            </div>
+            <div>
+              <key-word>import</key-word> &#123; switchMap, throttleTime &#125;
+              <key-word>from</key-word>
+              <prb-string>'rxjs/operators'</prb-string>;
+            </div>
+            <br />
+
+            <div>
+              <class-name>&#64;Injectable</class-name>(&#123;
+            </div>
+            <indent-1>
+              <prb-property>providedIn</prb-property>:
+              <prb-string>'root'</prb-string>,
+            </indent-1>
+            <div>
+              &#125;)
+            </div>
+            <div>
+              <key-word>export class</key-word>
+              <method-name>IdleService implements OnDestroy</method-name> &#123;
+            </div>
+            <indent-1>
+              <key-word>private</key-word> router = inject(Router);
+            </indent-1>
+            <br />
+
+            <indent-1>
+              <prb-comment>// Configuration Constants</prb-comment>
+            </indent-1>
+            <indent-1>
+              <key-word>private readonly</key-word> IDLE_TIMEOUT_MS =
+              <prb-property>15</prb-property> *
+              <prb-property>60</prb-property> *
+              <prb-property>1000</prb-property>;
+              <prb-comment>// 15 minutes</prb-comment>
+            </indent-1>
+            <indent-1>
+              <key-word>private readonly</key-word> COUNTDOWN_SECONDS =
+              <prb-property>60</prb-property>;
+              <prb-comment>// 1 minute warning</prb-comment>
+            </indent-1>
+            <br />
+
+            <indent-1>
+              <prb-comment>// Signal States for UI Consumption</prb-comment>
+            </indent-1>
+            <indent-1>
+              <key-word>readonly</key-word> isIdle =
+              signal&lt;<class-name>boolean</class-name>&gt;(<prb-property>false</prb-property>);
+            </indent-1>
+            <indent-1>
+              <key-word>readonly</key-word> countdown =
+              signal&lt;<class-name>number</class-name>&gt;(<class-name>this</class-name>.COUNTDOWN_SECONDS);
+            </indent-1>
+            <br />
+
+            <indent-1>
+              <key-word>private</key-word> destroy$ =
+              <key-word>new</key-word> Subject&lt;<class-name>void</class-name>&gt;();
+            </indent-1>
+            <indent-1>
+              <key-word>private</key-word> activitySub?: Subscription;
+            </indent-1>
+            <indent-1>
+              <key-word>private</key-word> countdownInterval?: <class-name>any</class-name>;
+            </indent-1>
+            <br />
+
+            <indent-1>
+              <method-name>constructor</method-name>() &#123;
+            </indent-1>
+            <indent-2>
+              <class-name>this</class-name>.startTracking();
+            </indent-2>
+            <br />
+
+            <indent-2>
+              <prb-comment>// Side effect: Automatically handle logout when countdown reaches 0</prb-comment>
+            </indent-2>
+            <indent-2>
+              effect(() => &#123;
+            </indent-2>
+            <indent-3>
+              <key-word>if</key-word> (<class-name>this</class-name>.isIdle() &&
+              <class-name>this</class-name>.countdown() <= <prb-property>0</prb-property>) &#123;
+            </indent-3>
+            <indent-4>
+              <class-name>this</class-name>.logoutUser();
+            </indent-4>
+            <indent-3>&#125;</indent-3>
+            <indent-2>
+              &#125;);
+            </indent-2>
+            <indent-1>&#125;</indent-1>
+            <br />
+
+            <indent-1>
+              <prb-comment>/**</prb-comment>
+            </indent-1>
+            <indent-1>
+              <prb-comment>* Initializes user activity listeners.</prb-comment>
+            </indent-1>
+            <indent-1>
+              <prb-comment>* Leverages throttled RxJS event tracking for high performance.</prb-comment>
+            </indent-1>
+            <indent-1>
+              <prb-comment>*/</prb-comment>
+            </indent-1>
+            <indent-1>
+              startTracking():
+              <class-name>void</class-name> &#123;
+            </indent-1>
+            <indent-2>
+              <class-name>this</class-name>.stopTracking();
+            </indent-2>
+            <indent-2>
+              <class-name>this</class-name>.isIdle.set(<prb-property>false</prb-property>);
+            </indent-2>
+            <indent-2>
+              <class-name>this</class-name>.countdown.set(<class-name>this</class-name>.COUNTDOWN_SECONDS);
+            </indent-2>
+            <br />
+
+            <indent-2>
+              <key-word>const</key-word> activityEvents$ = merge(
+            </indent-2>
+            <indent-3>
+              fromEvent(<class-name>window</class-name>,
+              <prb-string>'mousemove'</prb-string>),
+            </indent-3>
+            <indent-3>
+              fromEvent(<class-name>window</class-name>,
+              <prb-string>'keydown'</prb-string>),
+            </indent-3>
+            <indent-3>
+              fromEvent(<class-name>window</class-name>,
+              <prb-string>'click'</prb-string>),
+            </indent-3>
+            <indent-3>
+              fromEvent(<class-name>window</class-name>,
+              <prb-string>'scroll'</prb-string>),
+            </indent-3>
+            <indent-3>
+              fromEvent(<class-name>window</class-name>,
+              <prb-string>'touchstart'</prb-string>)
+            </indent-3>
+            <indent-2>
+              ).pipe(
+            </indent-2>
+            <indent-3>
+              <prb-comment>// Throttling prevents rapid-fire events from over-allocating timers</prb-comment>
+            </indent-3>
+            <indent-3>
+              throttleTime(<prb-property>500</prb-property>)
+            </indent-3>
+            <indent-2>);</indent-2>
+            <br />
+
+            <indent-2>
+              <class-name>this</class-name>.activitySub = activityEvents$
+            </indent-2>
+            <indent-3>
+              .pipe(
+            </indent-3>
+            <indent-4>
+              <prb-comment>// Resets and maps into a delayed execution</prb-comment>
+            </indent-4>
+            <indent-4>
+              switchMap(() =>
+              <key-word>new</key-word>
+              <class-name>Promise</class-name>((resolve) =>
+              <class-name>setTimeout</class-name>(resolve,
+              <class-name>this</class-name>.IDLE_TIMEOUT_MS)))
+            </indent-4>
+            <indent-3>
+              )
+            </indent-3>
+            <indent-3>
+              .subscribe(() => &#123;
+            </indent-3>
+            <indent-4>
+              this.becomeIdle();
+            </indent-4>
+            <indent-3>&#125;);
+            </indent-3>
+            <indent-1>&#125;</indent-1>
+            <br />
+
+            <indent-1><prb-comment>/**</prb-comment></indent-1>
+            <indent-1>
+              <prb-comment>* Switches the state to idle and initializes the warning countdown</prb-comment>
+            </indent-1>
+            <indent-1><prb-comment>*/</prb-comment></indent-1>
+            <indent-1>
+              <key-word>private</key-word> becomeIdle():
+              <class-name>void</class-name> &#123;
+            </indent-1>
+            <indent-2>
+              <class-name>this</class-name>.isIdle.set(<prb-property>true</prb-property>);
+            </indent-2>
+            <indent-2>
+              <class-name>this</class-name>.stopTracking();
+              <prb-comment>// Stop listening to interactions while warning is active</prb-comment>
+            </indent-2>
+            <br />
+
+            <indent-2>
+              <class-name>this</class-name>.countdownInterval =
+              <class-name>setInterval</class-name>(() => &#123;
+            </indent-2>
+            <indent-3>
+              <class-name>this</class-name>.countdown.update((current) => current -
+              <prb-property>1</prb-property>);
+            </indent-3>
+            <indent-2>
+              &#125;, <prb-property>1000</prb-property>);
+            </indent-2>
+            <indent-1>&#125;
+            </indent-1>
+            <br />
+
+            <indent-1>
+              <prb-comment>/**</prb-comment>
+            </indent-1>
+            <indent-1>
+              <prb-comment>* Resets the idle state back to normal if the user signals they are present</prb-comment>
+            </indent-1>
+            <indent-1>
+              <prb-comment>*/</prb-comment>
+            </indent-1>
+            <indent-1>
+              resetIdle(): void &#123;
+            </indent-1>
+            <indent-2>
+              <key-word>if</key-word> (<class-name>this</class-name>.countdownInterval) &#123;
+            </indent-2>
+            <indent-3>
+              clearInterval(<class-name>this</class-name>.countdownInterval);
+            </indent-3>
+            <indent-2>&#125;</indent-2>
+            <indent-2>
+              <class-name>this</class-name>.startTracking();
+            </indent-2>
+            <indent-1>&#125;
+            </indent-1>
+            <br />
+
+            <indent-1>
+              <key-word>private</key-word> stopTracking():
+              <class-name>void</class-name> &#123;
+            </indent-1>
+            <indent-2>
+              <key-word>if</key-word> (<class-name>this</class-name>.activitySub) &#123;
+            </indent-2>
+            <indent-3>
+              <class-name>this</class-name>.activitySub.unsubscribe();
+            </indent-3>
+            <indent-2>&#125;</indent-2>
+            <indent-2>
+              <key-word>if</key-word> (<class-name>this</class-name>.countdownInterval) &#123;
+            </indent-2>
+            <indent-3>
+              clearInterval(<class-name>this</class-name>.countdownInterval);
+            </indent-3>
+            <indent-2>&#125;</indent-2>
+            <indent-1>&#125;
+            </indent-1>
+            <br />
+
+            <indent-1>
+              <key-word>private</key-word> logoutUser():
+              <class-name>void</class-name> &#123;
+            </indent-1>
+            <indent-2>
+              <class-name>this</class-name>.cleanup();
+            </indent-2>
+            <indent-2>
+              <class-name>this</class-name>.router.navigate([<prb-string>'/login'</prb-string>]);
+            </indent-2>
+            <indent-2>
+              <class-name>console</class-name>.warn(<prb-string>'User session terminated due to
+              inactivity.'</prb-string>);
+            </indent-2>
+            <indent-1>&#125;</indent-1>
+            <br />
+
+            <indent-1>
+              <key-word>private</key-word> cleanup():
+              <class-name>void</class-name> &#123;
+            </indent-1>
+            <indent-2>
+              <class-name>this</class-name>.stopTracking();
+            </indent-2>
+            <indent-2>
+              <class-name>this</class-name>.destroy$.next();
+            </indent-2>
+            <indent-2>
+              <class-name>this</class-name>.destroy$.complete();
+            </indent-2>
+            <indent-1>&#125;</indent-1>
+            <br />
+
+            <indent-1>
+              ngOnDestroy():
+              <class-name>void</class-name> &#123;
+            </indent-1>
+            <indent-2>
+              <class-name>this</class-name>.cleanup();
+            </indent-2>
+            <indent-1>&#125;</indent-1>
+            <div>&#125;
+            </div>
+          </card-body>
+        </card-container>
+        <h1>2. The Warning Dialog Component (idle-warning.component.ts)</h1>
+        <p>
+          Taking advantage of modern Angular syntax and implicit OnPush default behavior, this component
+          conditionally displays a warning modal instantly reacting to the service's signals.
+        </p>
+        <br />
+        <card-container>
+          <card-header>
+            TypeScript
+          </card-header>
+          <card-body>
+            <div>
+              <key-word>import</key-word> &#123; Component, inject &#125;
+              <key-word>from</key-word>
+              <prb-string>'&#64;angular/core'</prb-string>;
+            </div>
+            <div>
+              <key-word>import</key-word> &#123; IdleService &#125;
+              <key-word>from</key-word>
+              <prb-string>'./idle.service'</prb-string>;
+            </div>
+            <br />
+
+            <div>
+              <class-name>&#64;Component</class-name>(&#123;
+            </div>
+            <indent-1>
+              <prb-property>selector</prb-property>:
+              <prb-string>'app-idle-warning'</prb-string>,
+            </indent-1>
+            <indent-1>
+              <prb-property>standalone</prb-property>:
+              <prb-property>true</prb-property>,
+            </indent-1>
+            <indent-1>
+              <prb-property>imports</prb-property>: [],
+            </indent-1>
+            <indent-1>
+              <prb-property>template</prb-property>:
+              <prb-string>`</prb-string>
+            </indent-1>
+            <indent-2>
+              <prb-string>&#64;if (idleService.isIdle()) &#123;</prb-string>
+            </indent-2>
+            <indent-3>
+              <prb-string>&lt;div class="modal-overlay"&gt;</prb-string>
+            </indent-3>
+            <indent-4>
+              <prb-string>&lt;div class="modal-box"&gt;</prb-string>
+            </indent-4>
+            <indent-5>
+              <prb-string>&lt;h2&gt;Are you still there?&lt;/h2&gt;</prb-string>
+            </indent-5>
+            <indent-5>
+              <prb-string>&lt;p&gt;Your session will expire shortly due to inactivity.&lt;/p&gt;</prb-string>
+            </indent-5>
+            <indent-5>
+              <prb-string>&lt;div class="countdown-timer"&gt;</prb-string>
+            </indent-5>
+            <indent-6>
+             <prb-string>Logging out in: &lt;strong&gt;
+                &#123; &#123; idleService.countdown() &#125;&#125;
+               &lt;/strong&gt; seconds</prb-string>
+            </indent-6>
+            <indent-5>
+              <prb-string>&lt;/div&gt;</prb-string>
+            </indent-5>
+            <indent-5>
+              <prb-string>&lt;button (click)="stayConnected()"&gt;I am still here&lt;/button&gt;</prb-string>
+            </indent-5>
+            <indent-4>
+              <prb-string>&lt;/div&gt;</prb-string>
+            </indent-4>
+            <indent-3>
+              <prb-string>&lt;/div&gt;</prb-string>
+            </indent-3>
+            <indent-2>
+              <prb-string>&#125;</prb-string>
+            </indent-2>
+            <indent-1>
+              <prb-string>`</prb-string>,
+            </indent-1>
+            <indent-1>
+              <prb-property>styles</prb-property>: <prb-string>`</prb-string>
+            </indent-1>
+            <indent-2>
+              <prb-string>.modal-overlay &#123;</prb-string>
+            </indent-2>
+            <indent-3>
+              <prb-string>position: fixed;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>top: 0;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>left: 0;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>width: 100vw;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>height: 100vh;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>background: rgba(0, 0, 0, 0.6);</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>display: flex;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>justify-content: center;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>align-items: center;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>z-index: 9999;</prb-string>
+            </indent-3>
+            <indent-2>
+              <prb-string>&#125;</prb-string>
+            </indent-2>
+            <indent-2>
+              <prb-string>.modal-box &#123;</prb-string>
+            </indent-2>
+            <indent-3>
+              <prb-string>background: var(--bg-color, white);</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>padding: 2rem;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>border-radius: 12px;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>text-align: center;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>box-shadow: 0 10px 25px rgba(0,0,0,0.2);</prb-string>
+            </indent-3>
+            <indent-2>
+              <prb-string>&#125;</prb-string>
+            </indent-2>
+            <indent-2>
+              <prb-string>.countdown-timer &#123;</prb-string>
+            </indent-2>
+            <indent-3>
+              <prb-string>font-size: 1.25rem;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>margin: 1.5rem 0;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>color: #d9534f;</prb-string>
+            </indent-3>
+            <indent-2>
+              <prb-string>&#125;</prb-string>
+            </indent-2>
+            <indent-2>
+              <prb-string>button &#123;</prb-string>
+            </indent-2>
+            <indent-3>
+              <prb-string>padding: 0.6rem 2rem;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>background: #0056b3;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>color: white;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>border: none;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>border-radius: 6px;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>cursor: pointer;</prb-string>
+            </indent-3>
+            <indent-3>
+              <prb-string>font-weight: 600;</prb-string>
+            </indent-3>
+            <indent-2>
+              <prb-string>&#125;</prb-string>
+            </indent-2>
+            <indent-1>
+              <indent-1><prb-string>`</prb-string></indent-1>
+            </indent-1>
+            <div>
+              &#125;)
+            </div>
+            <div>
+              <key-word>export class</key-word> <method-name>IdleWarningComponent</method-name> &#123;
+            </div>
+            <indent-1>
+              <key-word>protected</key-word> idleService = inject(IdleService);
+            </indent-1>
+            <br />
+
+            <indent-1>
+              <method-name>stayConnected</method-name>() &#123;
+            </indent-1>
+            <indent-3>
+              <class-name>this</class-name>.idleService.resetIdle();
+            </indent-3>
+            <indent-2>&#125;</indent-2>
+            <indent-1>&#125;</indent-1>
+          </card-body>
+        </card-container>
+        <br />
+
+        <h1>3. Global Application Wiring (app.component.ts)</h1>
+        <p>
+          Because IdleService is registered at the root, embedding the
+          warning component directly into your root application canvas ensures comprehensive, application-wide user
+          activity monitoring.
+        </p>
+        <card-container>
+          <card-header>
+            TypeScript
+          </card-header>
+          <card-body>
+            <div>
+              <key-word>import</key-word> &#123; Component &#125;
+              <key-word>from</key-word>
+              <prb-string>'&#64;angular/core'</prb-string>;
+            </div>
+            <div>
+              <key-word>import</key-word> &#123; RouterOutlet &#125;
+              <key-word>from</key-word>
+              <prb-string>'&#64;angular/router'</prb-string>;
+            </div>
+            <div>
+              <key-word>import</key-word> &#123; IdleWarningComponent &#125;
+              <key-word>from</key-word>
+              <prb-string>'./idle-warning.component'</prb-string>;
+            </div>
+            <br />
+
+            <div>
+              <class-name>&#64;Component</class-name>(&#123;
+            </div>
+            <indent-1>
+              <prb-property>selector</prb-property>:
+              <prb-string>'app-root'</prb-string>,
+            </indent-1>
+            <indent-1>
+              <prb-property>standalone</prb-property>: <prb-property>true</prb-property>,
+            </indent-1>
+            <indent-1>
+              <prb-property>imports</prb-property>: [RouterOutlet, IdleWarningComponent],
+            </indent-1>
+            <indent-1>
+              <prb-property>template</prb-property>: <prb-string>`</prb-string>
+            </indent-1>
+            <indent-1>
+              <prb-string>&lt;router-outlet /&gt;</prb-string>
+            </indent-1>
+            <indent-1>
+              <prb-string>&lt;app-idle-warning /&gt;</prb-string>
+            </indent-1>
+            <indent-1>
+              <prb-string>`</prb-string>
+            </indent-1>
+            <div>
+              &#125;)
+            </div>
+            <div>
+              <key-word>export class</key-word> AppComponent &#123;&#125;
+            </div>
+          </card-body>
+        </card-container>
+        <h2>Highlights of this Modern Implementation</h2>
+        <ul>
+          <li>
+            <b>Optimized for Zoneless:</b> Older implementations required explicitly
+            forcing event streams into <code-text>ngZone.runOutsideAngular</code-text>
+            to protect the browser from frame-drops. Because Angular 22 runs natively zoneless,
+            standard event listeners are incredibly lightweight, and change detection updates
+            are isolated to just the parts of the DOM reading the isIdle and countdown signals.
+          </li>
+          <li>
+            <b>Signal-Driven Declarative Logic:</b> Instead of manually subscribing to multi-layered
+            interval streams in components, the clean <code-text>&#64;if (idleService.isIdle())</code-text>
+            modern control flow automatically binds the template directly to the state primitive.
+          </li>
+          <li>
+            <b>Throttled Interactions:</b> Using <code-text>throttleTime(500)</code-text> guarantees that
+            sweeping gestures across the page or aggressive keystrokes don't continually spawn and
+            clear unnecessary timer resources.
+          </li>
+        </ul>
+      </answer-container>
+    </jelly-container>
+  </div>
+
+  <div class="right-menu">
+    <prb-sub-menu />
+  </div>
+</div>
