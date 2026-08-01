@@ -1,0 +1,9 @@
+@use "mixins";
+
+.page-content-container {
+  @include mixins.mix-page-base();
+
+  .page-content {
+    padding: 0 1em;
+  }
+}
