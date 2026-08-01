@@ -1,0 +1,32 @@
+@mixin mix-page-base {
+  letter-spacing: 0.05em;
+  line-height: 1.5em;
+  max-height: var(--content-height);
+  overflow-y: auto;
+}
+
+@mixin mix-right-side-menu {
+  display: grid;
+  grid-template-areas:
+    "main-content-panel right-menu-panel";
+  grid-template-columns: auto 250px;
+  @include mix-page-base;
+
+  .page-content {
+    grid-area: main-content-panel;
+    padding: 1em;
+  }
+
+  .right-menu {
+    position: fixed;
+    right: 1em;
+    grid-area: right-menu-panel;
+    background-color: var(--color-menu-background);
+    font-size: 12pt;
+    border-radius: 0 0 0 20px;
+  }
+}
+
+@mixin mix-box-shadow {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}

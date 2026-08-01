@@ -1,0 +1,27 @@
+ul.menu, menu {
+  list-style: none;
+  padding-inline-start: 10px;
+  padding-inline-end: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12pt;
+
+  li {
+    line-height: 1.5em;
+    border-radius: 8px;
+    padding: 3px;
+    color: var(--color-menu-text);
+
+    a {
+      text-decoration: none;
+      color: var(--color-menu-text);
+    }
+
+    &:hover {
+      background-color: var(--color-menu-background-hover);
+    }
+
+    &.key-item {
+      font-size: 16pt;
+    }
+  }
+}
