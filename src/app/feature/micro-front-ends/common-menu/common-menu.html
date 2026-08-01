@@ -1,0 +1,122 @@
+<div class="page-content-container">
+  <div class="page-content">
+    <jelly-container>
+      <question-container>
+        Using micro frontend technology, how do I share a menu across multiple frontend applications
+      </question-container>
+
+      <answer-container>
+        <p>
+          Sharing a menu across micro frontends (MFEs) is one of the most common architectural hurdles. You want a
+          consistent user experience without forcing every team to redeploy when a menu link changes.
+        </p>
+
+        <p>
+          Here are the three most effective industry patterns to achieve this, ranked from "most flexible" to "easiest
+          to implement."
+        </p>
+        <hr />
+
+        <h1>1. Module Federation (The Modern Standard)</h1>
+        <p>
+          If you are using Webpack 5, Vite, or RSpack, Module Federation is the go-to solution. It allows one
+          application to dynamically export a component (the Menu) and others to consume it at runtime.
+        </p>
+
+        <ul>
+          <li>How it works:</li>
+          <ol>
+            <li>Create a "Shell" or "Utils" MFE that contains the Menu component.</li>
+            <li>Expose the component in the webpack.config.js.</li>
+            <li>Remote applications "import" it as if it were a local library.</li>
+          </ol>
+
+          <li>Pros: Seamless integration; feels like writing standard React/Vue; no page reloads.</li>
+
+          <li>Cons: Requires a shared build tool (e.g., all apps must use Webpack or a compatible plugin).</li>
+        </ul>
+        <hr />
+
+        <h1>2. Shared Web Components (The Framework Agnostic Way)</h1>
+        If your MFEs use different frameworks (e.g., a React Header in an Angular app), Web Components are your best
+        friend.
+
+        <ul>
+          <li>How it works:</li>
+          <ol>
+            <li>Build your menu using the Custom Elements API.</li>
+            <li>Bundle it into a single JavaScript file hosted on a CDN.</li>
+            <li>Each MFE includes the script tag and uses the custom tag:<br />
+              <html-tag>&lt;main-menu&gt;&lt;/main-menu&gt;</html-tag>
+              .
+            </li>
+          </ol>
+
+          <li>Pros: Framework independent; completely decoupled versioning.</li>
+
+          <li>Cons: Styling can be tricky (Shadow DOM); slightly more boilerplate code.</li>
+        </ul>
+        <hr />
+
+        <h1>3. The "App Shell" Orchestrator</h1>
+        Instead of sharing the menu into the apps, you put the apps inside the menu. This is the architecture used by
+        libraries like single-spa.
+
+        <ul>
+          <li>How it works: * The App Shell (the container) is responsible for the Header, Sidebar, and Footer.</li>
+
+          <ul>
+            <li>It defines a "slot" or "region" where the micro frontends are mounted based on the URL.</li>
+          </ul>
+
+          <li>Pros: Centralized control; MFEs don't need to worry about the menu at all.</li>
+
+          <li>Cons: The Shell becomes a single point of failure; requires careful routing coordination.</li>
+        </ul>
+        <hr />
+
+        <h1>Comparison at a Glance</h1>
+        <indent-1>
+          <p>Feature Module Federation Web Components App Shell</p>
+          <p>Performance High (Shared deps) <i>Medium High</i></p>
+          <p>Tech Stack Usually Unified Any (Polyglot) <i>Any</i></p>
+          <p>Complexity Moderate <i>Low High</i></p>
+          <p>
+            Best For React/Vue ecosystems Legacy migrations Large-scale suites
+          </p>
+        </indent-1>
+
+        <h2>Key Technical Considerations</h2>
+
+        <h2>Regardless of the method you choose, you’ll need to handle these two <i>"gotchas"</i>:</h2>
+
+        <indent-1>
+          <p>
+            <prb-note>State Synchronization:</prb-note> If the menu needs to show "Logged in as: User," use a
+            lightweight shared state like a
+            browser
+            CustomEvent or a shared Redux/Zustand store if they live on the same window object.
+          </p>
+
+          <p>
+            <prb-note>Routing:</prb-note> Ensure that clicking a link in the shared menu triggers the History
+            API
+            (pushState) so that all micro
+            frontends are aware of the URL change without a hard refresh.
+          </p>
+        </indent-1>
+
+        <p>
+          <prb-note>Note:</prb-note> Avoid using NPM packages for shared UI components if you want to update the
+          menu
+          frequently. If you use a
+          package, you’ll have to re-build and re-deploy every single MFE just to change one menu link!
+        </p>
+      </answer-container>
+    </jelly-container>
+  </div>
+
+  <div class="right-menu">
+    <prb-sub-menu />
+  </div>
+</div>
