@@ -1,0 +1,228 @@
+<div class="page-content-container">
+  <div class="page-content">
+    <jelly-container>
+      <question-container>
+        Setup ssh from windows to raspberry pi - assign pi502 as the file name
+      </question-container>
+      <answer-container>
+        <p>
+          To set up key-based SSH authentication from your Windows machine to your Raspberry Pi using your
+          preferred key name (<code-text>npi502_ed25519</code-text>), follow these step-by-step instructions.
+        </p>
+
+        <p>
+          This guide covers generating the key pairs using standard Windows tools (like OpenSSH or PuTTY)
+          and configuring the connection.
+        </p>
+        <hr/>
+
+        <h1>
+          Option 1: Using Windows Built-in OpenSSH (Recommended)
+        </h1>
+        <p>
+          If you are using the Windows Command Prompt or PowerShell, you can use the built-in OpenSSH tools.
+        </p>
+
+        <h2>
+          1. Generate the Key Pair
+        </h2>
+        <p>
+          Open PowerShell on your Windows machine and run the following command to create a secure
+          Ed25519 key pair:
+        </p>
+
+        <card-container>
+          <card-header>
+            PowerShell
+          </card-header>
+          <card-body>
+            <div>
+              <class-name>cd</class-name>
+              ~\.ssh
+            </div>
+            <div>
+              <html-tag>ssh-keygen -t</html-tag>
+              ed25519 -f pi502_ed25519
+            </div>
+          </card-body>
+        </card-container>
+
+        <ul>
+          <li>
+            Passphrase: You can enter a passphrase for extra security, or press Enter twice to leave it blank.
+          </li>
+        </ul>
+        <block-quote>
+          <div>
+            What this does: This creates two files in your
+            <code-text>C:\Users\YourUsername\.ssh\</code-text> folder:
+          </div>
+          <ul>
+            <li>
+              <code-text>npi502_ed25519</code-text>:
+              Your private key (keep this extremely secure and never share it).
+            </li>
+            <li>
+              <code-text>npi502_ed25519.pub</code-text>:
+              Your public key (the "lock" you will put on your Raspberry Pi).
+            </li>
+          </ul>
+        </block-quote>
+        <hr/>
+        <h2>
+          2. Copy the Public Key to the Raspberry Pi
+        </h2>
+        <p>
+          You need to append the contents of
+          <code-text>npi502_ed25519.pub</code-text>
+          to the
+          <code-text>~/.ssh/authorized_keys</code-text>
+          file on your Pi.
+        </p>
+        <p>
+          The easiest way to do this from Windows PowerShell is:
+        </p>
+        <card-container>
+          <card-header>
+            PowerShell
+          </card-header>
+          <card-body>
+            <div>
+              <class-name>cd</class-name> ~\.ssh
+            </div>
+            <div>
+              <class-name>type</class-name> npi502_ed25519.pub | ssh pi5&#64;&lt;your_pi_ip&gt;
+              <prb-string>"mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600
+                ~/.ssh/authorized_keys"</prb-string>
+            </div>
+          </card-body>
+        </card-container>
+        <p>
+          (Replace
+          <code-text>pi5</code-text>
+          with your Pi's username and
+          <code-text>&lt;your_pi_ip&gt;</code-text>
+          with your local network IP).
+        </p>
+
+        <h2>3. Connect Using the Key</h2>
+        <p>
+          To connect using your custom-named key, use the -i flag to specify the identity file:
+        </p>
+        <card-container>
+          <card-header>
+            DOS
+          </card-header>
+          <card-body>
+            ssh -i C:\Users\YourName\.ssh\npi502_ed25519 pi5&#64;&lt;your_pi_ip&gt;
+          </card-body>
+        </card-container>
+
+        <h1>
+          Option 2: Using PuTTY
+        </h1>
+        <p>
+          If you prefer using a graphical interface like PuTTY, follow these steps:
+        </p>
+
+        <h2>
+          1. Generate the Key with PuTTYgen
+        </h2>
+        <ol>
+          <li>
+            Launch PuTTYgen.
+          </li>
+          <li>
+            Under Parameters (at the bottom), select Ed25519.
+          </li>
+          <li>
+            Click Generate and move your mouse around the blank area to create randomness.
+          </li>
+          <li>
+            Once generated, click Save private key. Name it
+            <code-text>npi502_ed25519.ppk</code-text>.
+          </li>
+          <li>
+            Click Save public key and name it
+            <code-text>npi502_ed25519.pub</code-text>.
+          </li>
+          <li>
+            Keep the PuTTYgen window open; copy the entire text string from the box labeled "Public key for
+            pasting into OpenSSH authorized_keys file".
+          </li>
+        </ol>
+        <h2>
+          2. Add the Public Key to the Pi
+        </h2>
+        <p>
+          Log into your Raspberry Pi via PuTTY using your password.
+        </p>
+
+        <p>
+          Open or create the authorized keys file:
+        </p>
+
+        <card-container>
+          <card-header>
+            Bash
+          </card-header>
+          <card-body>
+            mkdir -p ~/.ssh && chmod 700 ~/.ssh
+            nano ~/.ssh/authorized_keys
+          </card-body>
+        </card-container>
+        <p>
+          Paste the text string you copied from PuTTYgen into this file.
+        </p>
+
+        <p>
+          Press
+          <code-text>Ctrl + O</code-text> then Enter to save, and
+          <code-text>Ctrl + X</code-text> to exit.
+        </p>
+
+        <p>
+          Set correct permissions:
+        </p>
+
+        <card-container>
+          <card-header>
+            Bash
+          </card-header>
+          <card-body>
+            chmod 600 ~/.ssh/authorized_keys
+          </card-body>
+        </card-container>
+        <h2>
+          3. Configure PuTTY to Use the Key
+        </h2>
+        <ol>
+          <li>
+            Open PuTTY.
+          </li>
+          <li>
+            Go to the Session category and enter your Pi's IP address.
+          </li>
+          <li>
+            In the left sidebar, navigate to Connection -> SSH -> Auth -> Credentials.
+          </li>
+          <li>
+            In the Private key file for authentication field, click Browse... and select your
+            npi502_ed25519.ppk file.
+          </li>
+          <li>
+            Go back to Session, type a name under Saved Sessions (e.g., "Raspberry Pi 5"), and click
+            Save.
+          </li>
+          <li>
+            Click Open to connect passwordlessly.
+          </li>
+        </ol>
+      </answer-container>
+    </jelly-container>
+  </div>
+
+  <div class="right-menu">
+    <prb-sub-menu/>
+  </div>
+</div>
