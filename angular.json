@@ -20,6 +20,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/prb-notes",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -27,14 +28,28 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "public",
+                "output": "/"
+              },
+              {
+                "glob": "**.png",
+                "input": "public/assets/images",
+                "output": "assets/images"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ]
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "public/assets/scss",
+                "."
+              ]
+            },
+            "styles": ["src/styles.scss"]
           },
           "configurations": {
-            "production": {
+            "prod": {
               "budgets": [
                 {
                   "type": "initial",
@@ -55,13 +70,13 @@
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "prod"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "prb-notes:build:production"
+            "prod": {
+              "buildTarget": "prb-notes:build:prod"
             },
             "development": {
               "buildTarget": "prb-notes:build:development"
