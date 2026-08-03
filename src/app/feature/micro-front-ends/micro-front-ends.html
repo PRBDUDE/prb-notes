@@ -1,0 +1,63 @@
+<div class="page-content-container">
+  <div class="page-content">
+    <h2>Purpose</h2>
+    <p>
+      A Large webapp is too large to load at one time.
+      Many times a webapp server will timeout while trying to send the entire webapp to the client.
+      For this reason a large webapp is broken into smaller Micro Front End webapps which are easier to maintain and
+      download.
+      A Micro Front End is a single webapp that is part of a larger web application.
+    </p>
+
+    <h2>Process</h2>
+    <p>
+      Normally each webapp has it's own URL and is distinct from other webapps.
+    </p>
+
+    <p>
+      To get around this issue, a single URL is established and a load balancer is used to divide the portions of the
+      larger webapp into sections.
+      Each webapp uses a path based upon the base URL with the difference being the path.
+    </p>
+
+    <p>
+      First, a webapp is developed to provide the home page to the entire site.
+      This webapp is the splash page and may load other webapps in the background.
+      Lets say that the base URL is <code-text>www.acme.com</code-text> which will take the user to the home page of the
+      application.
+    </p>
+
+    <p>
+      Now we develop another webapp for basic contact and company information.
+      The URL will include the base URL and a path as in <code-text>www.acme.com/info</code-text> so the load balancer
+      will know to redirect the user to the webapp with contact information.
+      The info webapp contains pages for "About Us", "Contact Us" and any other information the customer may need.
+    </p>
+
+    <p>
+      Next we develop another webapp for product information.
+      The URL will include the base URL and a path as in <code-text>www.acme.com/product</code-text> so the load
+      balancer will know to redirect the user to the webapp with the product information.
+      The product webapp contains pages which will call a backend server to gather product information for display on
+      pages for the customer.
+    </p>
+
+    <p>
+      Next we develop another webapp for product sales.
+      The URL will include the base URL and a path as in <code-text>www.acme.com/sales</code-text> so the load balancer
+      will know to redirect the use to the webapp with the sales information.
+      The sales webapp contains pages which will call a backend server to gather product sales information for display
+      on the pages for the customer.
+    </p>
+
+    <h2>Continuity</h2>
+    <p>
+      A menu system must handle routes within a webapp as well as links outside of the loaded webapp which point to
+      another webapp.
+    </p>
+  </div>
+
+  <div class="right-menu">
+    <prb-sub-menu />
+  </div>
+</div>
