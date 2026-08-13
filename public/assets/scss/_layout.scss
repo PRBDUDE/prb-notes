@@ -35,7 +35,7 @@ body {
       grid-area: content-panel;
 
       .page-content {
-        //@include mixins.mix
+        @include mixins.mix-page-content;
       }
     }
 
