@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'prb-menu',
   imports: [],
   template: `
-    <nav class="page-nav">
+    <nav>
       <menu>
         <li>
           <a href="/home">Home</a>
