@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
-import { ThemeSubMenu } from '../sub-menu/theme-sub-menu';
+import { ThemeSubMenu } from '../theme-sub-menu/theme-sub-menu';
 import { Palette } from './palette/palette';
 
 @Component({
