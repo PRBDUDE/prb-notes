@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
-import { SubMenu } from '../sub-menu/sub-menu';
+import { HomeLabSubMenu } from '../home-lab-sub-menu/home-lab-sub-menu';
 import { JellyContainer } from '@core/jelly-container/jelly-container';
 import { QuestionContainer } from '@core/question-container/question-container';
 import { AnswerContainer } from '@core/answer-container/answer-container';
@@ -16,7 +16,7 @@ import { String } from '@core/string/string';
 @Component({
   selector: 'prb-setup-ssh',
   imports: [
-    SubMenu,
+    HomeLabSubMenu,
     JellyContainer,
     QuestionContainer,
     AnswerContainer,

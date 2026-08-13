@@ -3,7 +3,7 @@ import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-wi
 import { AnswerContainer } from '@core/answer-container/answer-container';
 import { JellyContainer } from '@core/jelly-container/jelly-container';
 import { QuestionContainer } from '@core/question-container/question-container';
-import { SubMenu } from '../sub-menu/sub-menu';
+import { HomeLabSubMenu } from '../home-lab-sub-menu/home-lab-sub-menu';
 import { CodeText } from '@core/code-text/code-text';
 import { CardBody } from '@core/card-body/card-body';
 import { CardHeader } from '@core/card-header/card-header';
@@ -17,7 +17,7 @@ import { ClassName } from '@core/class-name/class-name';
     AnswerContainer,
     JellyContainer,
     QuestionContainer,
-    SubMenu,
+    HomeLabSubMenu,
     CodeText,
     CardBody,
     CardHeader,
