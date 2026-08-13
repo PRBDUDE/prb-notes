@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubMenu } from './sub-menu';
+import { ThemeSubMenu } from './theme-sub-menu';
 
-describe('SubMenu', () => {
-  let component: SubMenu;
-  let fixture: ComponentFixture<SubMenu>;
+describe('ThemeSubMenu', () => {
+  let component: ThemeSubMenu;
+  let fixture: ComponentFixture<ThemeSubMenu>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SubMenu],
+      imports: [ThemeSubMenu],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SubMenu);
+    fixture = TestBed.createComponent(ThemeSubMenu);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
