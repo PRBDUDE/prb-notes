@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SubMenu } from '../sub-menu/sub-menu';
+import { ServicesSubMenu } from '../services-sub-menu/services-sub-menu';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
 import { JellyContainer } from '@core/jelly-container/jelly-container';
 import { QuestionContainer } from '@core/question-container/question-container';
@@ -25,7 +25,7 @@ import { tokenize } from '@core/parser/typescript/tokenizer';
 @Component({
   selector: 'prb-idle-service',
   imports: [
-    SubMenu,
+    ServicesSubMenu,
     JellyContainer,
     QuestionContainer,
     AnswerContainer,
