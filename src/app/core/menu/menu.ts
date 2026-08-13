@@ -4,9 +4,9 @@ import { Component } from '@angular/core';
   selector: 'prb-menu',
   imports: [],
   template: `
-    <nav>
+    <nav class="page-nav">
       <menu>
-        <li class="key-item">
+        <li>
           <a href="/home">Home</a>
         </li>
         <li>
@@ -18,11 +18,12 @@ import { Component } from '@angular/core';
         <li>
           <a href="/services">Services</a>
         </li>
-        <li class="key-item">
+        <li>
           <a href="/theme">Theme</a>
         </li>
       </menu>
     </nav>
   `,
+  styleUrl: './menu.scss',
 })
 export class Menu {}

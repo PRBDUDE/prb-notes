@@ -1,0 +1,33 @@
+.page-nav {
+  display: flex;
+  color: var(--color-menu-text);
+  background-color: var(--color-menu-background);
+  height: var(--nav-bar-height);
+  max-height: var(--nav-bar-height);
+  font-size: 12pt;
+
+  menu {
+    display: flex;
+    list-style-type: none;
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    padding-inline-start: 0;
+
+    li:first-child {
+      margin-left: 0.5em;
+    }
+
+    a {
+      color: inherit;
+      padding: 6px 20px;
+      text-decoration: none;
+      text-align: center;
+
+      &:hover {
+        background-color: var(--color-menu-hover-background);
+        color: var(--color-menu-hover-text);
+        border-radius: 6px;
+      }
+    }
+  }
+}
