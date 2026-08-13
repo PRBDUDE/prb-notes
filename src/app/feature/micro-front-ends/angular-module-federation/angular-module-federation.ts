@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
-import { SubMenu } from '../sub-menu/sub-menu';
+import { MicroFrontEndSubMenu } from '../sub-menu/micro-front-end-sub-menu';
 import { JellyContainer } from '@core/jelly-container/jelly-container';
 import { QuestionContainer } from '@core/question-container/question-container';
 import { AnswerContainer } from '@core/answer-container/answer-container';
@@ -23,7 +23,7 @@ import { MethodName } from '@core/method-name/method-name';
 @Component({
   selector: 'prb-angular-module-federation',
   imports: [
-    SubMenu,
+    MicroFrontEndSubMenu,
     JellyContainer,
     QuestionContainer,
     AnswerContainer,
