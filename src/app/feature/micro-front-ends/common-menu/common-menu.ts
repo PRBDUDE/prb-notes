@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
-import { MicroFrontEndSubMenu } from '../sub-menu/micro-front-end-sub-menu';
+import { MicroFrontEndSubMenu } from '../micro-front-end-sub-menu/micro-front-end-sub-menu';
 import { Note } from '@core/note/note';
 import { Indent1 } from '@core/indent-1/indent-1';
 import { HtmlTag } from '@core/html-tag/html-tag';

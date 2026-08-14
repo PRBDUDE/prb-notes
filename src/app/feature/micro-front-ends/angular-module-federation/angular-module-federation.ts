@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
-import { MicroFrontEndSubMenu } from '../sub-menu/micro-front-end-sub-menu';
+import { MicroFrontEndSubMenu } from '../micro-front-end-sub-menu/micro-front-end-sub-menu';
 import { JellyContainer } from '@core/jelly-container/jelly-container';
 import { QuestionContainer } from '@core/question-container/question-container';
 import { AnswerContainer } from '@core/answer-container/answer-container';
