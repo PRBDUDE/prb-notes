@@ -5,5 +5,8 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './home-lab-sub-menu.html',
   styleUrl: './home-lab-sub-menu.scss',
+  host: {
+    class: 'left-menu',
+  },
 })
 export class HomeLabSubMenu {}
