@@ -70,8 +70,11 @@ describe('CopySshFileToPi3 Component (Isolated)', () => {
     fixture.detectChanges();
   });
 
-  it('should render successfully with component overrides', async () => {
+  it('should create the component instance', () => {
     expect(fixture.componentInstance).toBeDefined();
+  });
+
+  it('should render successfully with component overrides', () => {
     expect(fixture.componentInstance.pageSubtitle).toBe('Home Lab Setup - Copy SSH File to PI (3)');
   });
 });
