@@ -20,6 +20,9 @@
         "./src/app/core/footer/*",
         "./src/app/core/menu/*",
         "./src/app/core/services/*"
+      ],
+      "@mock/*": [
+        "./src/test/mocks/*"
       ]
     }
   },

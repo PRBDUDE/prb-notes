@@ -1,0 +1,46 @@
+@use "mixins";
+
+body {
+  font-family: "Comic Sans MS", sans-serif;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 0.05em;
+
+  .layout {
+    display: grid;
+    grid-template-areas:
+      "header-panel"
+      "menu-panel"
+      "content-panel"
+      "footer-panel";
+
+    prb-header {
+      grid-area: header-panel;
+    }
+
+    prb-menu {
+      grid-area: menu-panel;
+    }
+
+    .router-content {
+      font-family: Arial, Helvetica, sans-serif;
+      grid-area: content-panel;
+      height: var(--content-height);
+      background-color: var(--color-content-background);
+      color: var(--color-content-text);
+      scrollbar-gutter: stable;
+    }
+
+    .page-content-container {
+      grid-area: content-panel;
+
+      .page-content {
+        @include mixins.mix-page-content;
+      }
+    }
+
+    prb-footer {
+      grid-area: footer-panel;
+    }
+  }
+}

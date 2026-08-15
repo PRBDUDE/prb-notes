@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
-import { SubMenu } from './sub-menu/sub-menu';
+import { HomeLabSubMenu } from './home-lab-sub-menu/home-lab-sub-menu';
 
 @Component({
   selector: 'prb-home-lab-setup',
-  imports: [SubMenu],
+  imports: [HomeLabSubMenu],
   templateUrl: './home-lab-setup.html',
   styleUrl: './home-lab-setup.scss',
 })

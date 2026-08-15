@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
-import { SubMenu } from '../sub-menu/sub-menu';
+import { ThemeSubMenu } from '../theme-sub-menu/theme-sub-menu';
 import { Palette } from './palette/palette';
 
 @Component({
   selector: 'prb-color',
-  imports: [SubMenu, Palette],
+  imports: [ThemeSubMenu, Palette],
   templateUrl: './color.html',
   styleUrls: ['../theme.scss', 'color.scss'],
 })

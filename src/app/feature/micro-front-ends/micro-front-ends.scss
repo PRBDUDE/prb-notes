@@ -1,5 +1,5 @@
 @use "mixins";
 
 .page-content-container {
-  @include mixins.mix-right-side-menu();
+  @include mixins.mix-left-side-menu();
 }
