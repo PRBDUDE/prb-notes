@@ -4,7 +4,7 @@ import { Component, input } from '@angular/core';
   selector: 'prb-indent',
   imports: [],
   template: `
-    <div [class]="'indent-' + level">
+    <div [class]="'indent-' + level()">
       <ng-content></ng-content>
     </div>
   `,
