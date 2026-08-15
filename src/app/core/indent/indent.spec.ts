@@ -87,4 +87,40 @@ describe('Indent Component', () => {
     expect(divElement.classList.contains('indent-5')).toBe(true);
     expect(divElement.classList.contains('indent-1')).toBe(false);
   });
+
+  it('should update the class when the input level=6', () => {
+    hostComponent.testLevel.set(6);
+    fixture.detectChanges();
+
+    const divElement = fixture.nativeElement.querySelector('div');
+    expect(divElement.classList.contains('indent-6')).toBe(true);
+    expect(divElement.classList.contains('indent-1')).toBe(false);
+  });
+
+  it('should update the class when the input level=7', () => {
+    hostComponent.testLevel.set(7);
+    fixture.detectChanges();
+
+    const divElement = fixture.nativeElement.querySelector('div');
+    expect(divElement.classList.contains('indent-7')).toBe(true);
+    expect(divElement.classList.contains('indent-1')).toBe(false);
+  });
+
+  it('should update the class when the input level=8', () => {
+    hostComponent.testLevel.set(8);
+    fixture.detectChanges();
+
+    const divElement = fixture.nativeElement.querySelector('div');
+    expect(divElement.classList.contains('indent-8')).toBe(true);
+    expect(divElement.classList.contains('indent-1')).toBe(false);
+  });
+
+  it('should update the class when the input level=9', () => {
+    hostComponent.testLevel.set(9);
+    fixture.detectChanges();
+
+    const divElement = fixture.nativeElement.querySelector('div');
+    expect(divElement.classList.contains('indent-9')).toBe(true);
+    expect(divElement.classList.contains('indent-1')).toBe(false);
+  });
 });
