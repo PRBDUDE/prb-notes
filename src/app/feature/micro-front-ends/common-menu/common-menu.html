@@ -78,7 +78,7 @@
         <hr />
 
         <h1>Comparison at a Glance</h1>
-        <indent-1>
+        <prb-indent [level]="1">
           <p>Feature Module Federation Web Components App Shell</p>
           <p>Performance High (Shared deps) <i>Medium High</i></p>
           <p>Tech Stack Usually Unified Any (Polyglot) <i>Any</i></p>
@@ -86,13 +86,13 @@
           <p>
             Best For React/Vue ecosystems Legacy migrations Large-scale suites
           </p>
-        </indent-1>
+        </prb-indent>
 
         <h2>Key Technical Considerations</h2>
 
         <h2>Regardless of the method you choose, you’ll need to handle these two <i>"gotchas"</i>:</h2>
 
-        <indent-1>
+        <prb-indent [level]="1">
           <p>
             <prb-note>State Synchronization:</prb-note> If the menu needs to show "Logged in as: User," use a
             lightweight shared state like a
@@ -106,7 +106,7 @@
             (pushState) so that all micro
             frontends are aware of the URL change without a hard refresh.
           </p>
-        </indent-1>
+        </prb-indent>
 
         <p>
           <prb-note>Note:</prb-note> Avoid using NPM packages for shared UI components if you want to update the

@@ -12,15 +12,10 @@ import { KeyWord } from '@core/key-word/key-word';
 import { String } from '@core/string/string';
 import { ClassName } from '@core/class-name/class-name';
 import { MethodName } from '@core/method-name/method-name';
-import { Indent1 } from '@core/indent-1/indent-1';
 import { Comment } from '@core/comment/comment';
 import { Property } from '@core/property/property';
-import { Indent2 } from '@core/indent-2/indent-2';
-import { Indent3 } from '@core/indent-3/indent-3';
-import { Indent4 } from '@core/indent-4/indent-4';
-import { Indent5 } from '@core/indent-5/indent-5';
-import { Indent6 } from '@core/indent-6/indent-6';
 import { tokenize } from '@core/parser/typescript/tokenizer';
+import { Indent } from '@core/indent/indent';
 
 @Component({
   selector: 'prb-idle-service',
@@ -37,14 +32,9 @@ import { tokenize } from '@core/parser/typescript/tokenizer';
     String,
     ClassName,
     MethodName,
-    Indent1,
     Comment,
     Property,
-    Indent2,
-    Indent3,
-    Indent4,
-    Indent5,
-    Indent6,
+    Indent,
   ],
   templateUrl: './idle-service.html',
   styleUrl: '../services.scss',

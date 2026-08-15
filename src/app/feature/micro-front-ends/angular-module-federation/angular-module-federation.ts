@@ -10,15 +10,13 @@ import { CardBody } from '@core/card-body/card-body';
 import { Comment } from '@core/comment/comment';
 import { ClassName } from '@core/class-name/class-name';
 import { String } from '@core/string/string';
-import { Indent2 } from '@core/indent-2/indent-2';
-import { Indent1 } from '@core/indent-1/indent-1';
-import { Indent3 } from '@core/indent-3/indent-3';
 import { CodeText } from '@core/code-text/code-text';
 import { BlockQuote } from '@core/block-quote/block-quote';
 import { Note } from '@core/note/note';
 import { Property } from '@core/property/property';
 import { KeyWord } from '@core/key-word/key-word';
 import { MethodName } from '@core/method-name/method-name';
+import { Indent } from '@core/indent/indent';
 
 @Component({
   selector: 'prb-angular-module-federation',
@@ -33,15 +31,13 @@ import { MethodName } from '@core/method-name/method-name';
     Comment,
     ClassName,
     String,
-    Indent2,
-    Indent1,
-    Indent3,
     CodeText,
     BlockQuote,
     Note,
     Property,
     KeyWord,
     MethodName,
+    Indent,
   ],
   templateUrl: './angular-module-federation.html',
   styleUrl: '../micro-front-ends.scss',

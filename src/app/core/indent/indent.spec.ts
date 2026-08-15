@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Indent2 } from './indent-2';
+import { Indent } from './indent';
 
-describe('Indent2', () => {
-  let component: Indent2;
-  let fixture: ComponentFixture<Indent2>;
+describe('Indent', () => {
+  let component: Indent;
+  let fixture: ComponentFixture<Indent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Indent2],
+      imports: [Indent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Indent2);
+    fixture = TestBed.createComponent(Indent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

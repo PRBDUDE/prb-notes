@@ -9,9 +9,9 @@ import { CardContainer } from '@core/card-container/card-container';
 import { CardHeader } from '@core/card-header/card-header';
 import { CardBody } from '@core/card-body/card-body';
 import { BlockQuote } from '@core/block-quote/block-quote';
-import { Indent1 } from '@core/indent-1/indent-1';
 import { Comment } from '@core/comment/comment';
 import { ClassName } from '@core/class-name/class-name';
+import { Indent } from '@core/indent/indent';
 
 @Component({
   selector: 'prb-copy-ssh-file-to-pi',
@@ -25,9 +25,9 @@ import { ClassName } from '@core/class-name/class-name';
     CardHeader,
     CardBody,
     BlockQuote,
-    Indent1,
     Comment,
     ClassName,
+    Indent,
   ],
   templateUrl: './copy-ssh-file-to-pi.html',
   styleUrl: '../home-lab-setup.scss',
