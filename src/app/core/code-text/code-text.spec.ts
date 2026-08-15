@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, beforeEach, it, expect } from 'vitest';
 import { CodeText } from './code-text';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 // Test host component to project content into <ng-content>
 @Component({
@@ -15,7 +17,14 @@ describe('CodeText', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CodeText, TestHostComponent],
+      imports: [
+        CodeText,
+        TestHostComponent
+      ],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestHostComponent);

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, beforeEach, expect, it } from 'vitest';
 import { CardContainer } from './card-container';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 @Component({
   imports: [CardContainer],
@@ -14,7 +16,14 @@ describe('CardContainer', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardContainer, TestHostComponent],
+      imports: [
+        CardContainer,
+        TestHostComponent
+      ],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestHostComponent);
