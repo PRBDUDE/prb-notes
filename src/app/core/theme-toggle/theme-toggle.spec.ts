@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DOCUMENT } from '@angular/common';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ThemeToggle } from './theme-toggle';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('ThemeToggle', () => {
   let component: ThemeToggle;
@@ -10,7 +12,13 @@ describe('ThemeToggle', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ThemeToggle],
+      imports: [
+        ThemeToggle
+      ],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ThemeToggle);
