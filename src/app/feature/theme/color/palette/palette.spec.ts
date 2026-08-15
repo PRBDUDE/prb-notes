@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Palette } from './palette';
 import { describe, beforeEach, afterEach, it, expect, vi } from 'vitest';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('Palette Component', () => {
   let component: Palette;
@@ -9,6 +11,7 @@ describe('Palette Component', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Palette],
+      providers: [provideHttpClient(), provideHttpClientTesting()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(Palette);
