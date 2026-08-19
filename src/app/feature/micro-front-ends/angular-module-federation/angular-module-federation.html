@@ -84,34 +84,34 @@
             <div>
               <class-name>module</class-name>.exports = withModuleFederationPlugin(&#123;
             </div>
-            <indent-1>
+            <prb-indent [level]="1">
               <prb-property>name</prb-property>:
               <prb-string>'menu_mfe'</prb-string>,
               <prb-comment>// The name consumers will use</prb-comment>
-            </indent-1>
-            <indent-1>
+            </prb-indent>
+            <prb-indent [level]="1">
               <prb-property>exposes</prb-property>: &#123;
-            </indent-1>
-            <indent-2>
+            </prb-indent>
+            <prb-indent [level]="2">
               <prb-comment>// Key: The name to import, Value: Path to the component/module</prb-comment>
-            </indent-2>
-            <indent-2>
+            </prb-indent>
+            <prb-indent [level]="2">
               <prb-string>'./MenuComponent'</prb-string>:
               <prb-string>'./src/app/shared-menu/shared-menu.component.ts'</prb-string>,
-            </indent-2>
-            <indent-1>&#125;,</indent-1>
-            <indent-1>
+            </prb-indent>
+            <prb-indent [level]="1">&#125;,</prb-indent>
+            <prb-indent [level]="1">
               <prb-property>shared</prb-property>: &#123;
-            </indent-1>
-            <indent-2>
+            </prb-indent>
+            <prb-indent [level]="2">
               ...shareAll(&#123; <prb-property>singleton</prb-property>:
               <prb-property>true</prb-property>,
               <prb-property>strictVersion</prb-property>:
               <prb-property>true</prb-property>,
               <prb-property>requiredVersion</prb-property>:
               <prb-string>'auto'</prb-string> &#125;),
-            </indent-2>
-            <indent-1>&#125;,</indent-1>
+            </prb-indent>
+            <prb-indent [level]="1">&#125;,</prb-indent>
             &#125;);
           </card-body>
         </card-container>
@@ -139,26 +139,26 @@
             <div>
               <class-name>module</class-name>.exports = withModuleFederationPlugin(&#123;
             </div>
-            <indent-1>
+            <prb-indent [level]="1">
               <prb-property>remotes</prb-property>: &#123;
-            </indent-1>
-            <indent-2>
+            </prb-indent>
+            <prb-indent [level]="2">
               <prb-string>"menu_mfe"</prb-string>:
               <prb-string>"http://localhost:4201/remoteEntry.js"</prb-string>,
-            </indent-2>
-            <indent-1>&#125;,</indent-1>
-            <indent-1>
+            </prb-indent>
+            <prb-indent [level]="1">&#125;,</prb-indent>
+            <prb-indent [level]="1">
               <prb-property>shared</prb-property>: &#123;
-            </indent-1>
-            <indent-2>
+            </prb-indent>
+            <prb-indent [level]="2">
               ...shareAll(&#123; <prb-property>singleton</prb-property>:
               <prb-property>true</prb-property>,
               <prb-property>strictVersion</prb-property>:
               <prb-property>true</prb-property>,
               <prb-property>requiredVersion</prb-property>:
               <prb-string>'auto'</prb-string> &#125;),
-            </indent-2>
-            <indent-1>&#125;,</indent-1>
+            </prb-indent>
+            <prb-indent [level]="1">&#125;,</prb-indent>
             &#125;);
           </card-body>
         </card-container>
@@ -196,45 +196,45 @@
               <key-word>export class</key-word>&nbsp;
               <method-name>AppComponent implements OnInit</method-name> &#123;
             </div>
-            <indent-1>
+            <prb-indent [level]="1">
               <class-name>&#64;ViewChild</class-name>(
               <prb-string>'menuContainer'</prb-string>, &#123;
               <prb-property>read</prb-property>: ViewContainerRef,
               <prb-property>static</prb-property>:
               <prb-property>true</prb-property> &#125;)
-            </indent-1>
-            <indent-1>
+            </prb-indent>
+            <prb-indent [level]="1">
               container!: ViewContainerRef;
-            </indent-1>
+            </prb-indent>
             <br />
-            <indent-1>
+            <prb-indent [level]="1">
               <key-word>async</key-word>&nbsp;
               <method-name>ngOnInit</method-name>() &#123;
-            </indent-1>
-            <indent-2>
+            </prb-indent>
+            <prb-indent [level]="2">
               <key-word>const</key-word> Component =
               <key-word>await</key-word> loadRemoteModule(&#123;
-            </indent-2>
-            <indent-3>
+            </prb-indent>
+            <prb-indent [level]="3">
               <prb-property>type</prb-property>:
               <prb-string>'module'</prb-string>,
-            </indent-3>
-            <indent-3>
+            </prb-indent>
+            <prb-indent [level]="3">
               <prb-property>remoteEntry</prb-property>:
               <prb-string>'http://localhost:4201/remoteEntry.js'</prb-string>,
-            </indent-3>
-            <indent-3>
+            </prb-indent>
+            <prb-indent [level]="3">
               <prb-property>exposedModule</prb-property>:
               <prb-string>'./MenuComponent'</prb-string>
-            </indent-3>
-            <indent-2>
+            </prb-indent>
+            <prb-indent [level]="2">
               &#125;).<key-word>then</key-word>(m => m.SharedMenuComponent);
-            </indent-2>
+            </prb-indent>
             <br />
-            <indent-2>
+            <prb-indent [level]="2">
               <class-name>this</class-name>.container.createComponent(Component);
-            </indent-2>
-            <indent-1>&#125;</indent-1>
+            </prb-indent>
+            <prb-indent [level]="1">&#125;</prb-indent>
             &#125;
           </card-body>
         </card-container>

@@ -3,6 +3,8 @@ import { Header } from './header';
 import { HeaderService } from '@core/header-service';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { MockHeaderService } from '@mock/mock-header-service';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('Header Component', () => {
   let component: Header;
@@ -10,8 +12,14 @@ describe('Header Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Header],
-      providers: [{ provide: HeaderService, useClass: MockHeaderService }],
+      imports: [
+        Header
+      ],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: HeaderService, useClass: MockHeaderService }
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Header);

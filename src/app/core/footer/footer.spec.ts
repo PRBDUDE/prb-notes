@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { describe, beforeEach, it, expect } from 'vitest';
 import { Footer } from './footer';
 
-describe('Footer', () => {
+describe('Footer Component', () => {
   let component: Footer;
   let fixture: ComponentFixture<Footer>;
 
@@ -13,10 +13,16 @@ describe('Footer', () => {
 
     fixture = TestBed.createComponent(Footer);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the Copyright component', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const copyrightElement = compiled.querySelector('prb-copyright');
+    expect(copyrightElement).not.toBeNull();
   });
 });

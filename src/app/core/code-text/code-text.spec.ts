@@ -1,22 +1,45 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { describe, beforeEach, it, expect } from 'vitest';
 import { CodeText } from './code-text';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+
+// Test host component to project content into <ng-content>
+@Component({
+  imports: [CodeText],
+  template: `<code-text>Hello Vitest</code-text>`,
+})
+class TestHostComponent {}
 
 describe('CodeText', () => {
-  let component: CodeText;
-  let fixture: ComponentFixture<CodeText>;
+  let fixture: ComponentFixture<TestHostComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CodeText],
+      imports: [
+        CodeText,
+        TestHostComponent
+      ],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CodeText);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture = TestBed.createComponent(TestHostComponent);
+    fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create the component', () => {
+    const componentInstance = fixture.debugElement.children[0].componentInstance;
+    expect(componentInstance).toBeTruthy();
+  });
+
+  it('should project transcluded content into <ng-content>', () => {
+    const element: HTMLElement = fixture.nativeElement;
+    const codeTextElement = element.querySelector('code-text');
+
+    expect(codeTextElement?.textContent?.trim()).toBe('Hello Vitest');
   });
 });

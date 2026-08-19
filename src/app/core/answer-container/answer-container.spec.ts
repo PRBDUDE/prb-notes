@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AnswerContainer } from './answer-container';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 // Test host component to test <ng-content> projection
 @Component({
@@ -19,7 +21,14 @@ describe('AnswerContainer', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TestHostComponent, AnswerContainer],
+      imports: [
+        TestHostComponent,
+        AnswerContainer
+      ],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestHostComponent);
@@ -39,26 +48,3 @@ describe('AnswerContainer', () => {
     expect(projectedElement?.textContent).toBe('Test Projected Answer');
   });
 });
-
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-//
-// import { AnswerContainer } from './answer-container';
-//
-// describe('AnswerContainer', () => {
-//   let component: AnswerContainer;
-//   let fixture: ComponentFixture<AnswerContainer>;
-//
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       imports: [AnswerContainer],
-//     }).compileComponents();
-//
-//     fixture = TestBed.createComponent(AnswerContainer);
-//     component = fixture.componentInstance;
-//     await fixture.whenStable();
-//   });
-//
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
