@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from '@core/header';
 import { Footer } from '@core/footer';
@@ -10,6 +10,4 @@ import { Menu } from '@core/menu';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
-  protected readonly title = signal('prb-notes');
-}
+export class App {}
