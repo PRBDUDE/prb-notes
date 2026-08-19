@@ -3,12 +3,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { IdleService } from './idle-service';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { CopySshFileToPi3 } from '../../home-lab-setup/copy-ssh-file-to-pi-3/copy-ssh-file-to-pi-3';
 import { JellyContainer } from '@core/jelly-container/jelly-container';
 import { QuestionContainer } from '@core/question-container/question-container';
 import { AnswerContainer } from '@core/answer-container/answer-container';
 import { CodeText } from '@core/code-text/code-text';
-import { MockHomeLabSubMenu } from '@mock/mock-home-lab-sub-menu';
 import { MockJellyContainer } from '@mock/mock-jelly-container';
 import { MockQuestionContainer } from '@mock/mock-question-container';
 import { MockAnswerContainer } from '@mock/mock-answer-container';
@@ -32,7 +30,9 @@ import { MockString } from '@mock/mock-string';
 import { MockClassName } from '@mock/mock-class-name';
 import { MockComment } from '@mock/mock-comment';
 import { MockProperty } from '@mock/mock-property';
-import { MockIndent} from '@mock/mock-indent';
+import { MockIndent } from '@mock/mock-indent';
+import { MockServicesSubMenu } from '@mock/mock-services-sub-menu';
+import { MockMethodName } from '@mock/mock-method-name';
 
 describe('IdleService Component', () => {
   let component: IdleService;
@@ -44,7 +44,7 @@ describe('IdleService Component', () => {
       imports: [IdleService],
       providers: [provideHttpClient(), provideHttpClientTesting()],
     })
-      .overrideComponent(CopySshFileToPi3, {
+      .overrideComponent(IdleService, {
         remove: {
           imports: [
             ServicesSubMenu,
@@ -66,7 +66,7 @@ describe('IdleService Component', () => {
         },
         add: {
           imports: [
-            MockHomeLabSubMenu,
+            MockServicesSubMenu,
             MockJellyContainer,
             MockQuestionContainer,
             MockAnswerContainer,
@@ -77,6 +77,7 @@ describe('IdleService Component', () => {
             MockKeyWord,
             MockString,
             MockClassName,
+            MockMethodName,
             MockComment,
             MockProperty,
             MockIndent,

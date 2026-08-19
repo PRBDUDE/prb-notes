@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HowToSetupHomeLab } from './how-to-setup-home-lab';
-import { CopySshFileToPi3 } from '../copy-ssh-file-to-pi-3/copy-ssh-file-to-pi-3';
 import { AnswerContainer } from '@core/answer-container/answer-container';
 import { JellyContainer } from '@core/jelly-container/jelly-container';
 import { QuestionContainer } from '@core/question-container/question-container';
@@ -25,7 +24,7 @@ describe('HowToSetupHomeLab', () => {
       imports: [HowToSetupHomeLab],
       providers: [provideHttpClient(), provideHttpClientTesting()],
     })
-      .overrideComponent(CopySshFileToPi3, {
+      .overrideComponent(HowToSetupHomeLab, {
         remove: {
           imports: [HomeLabSubMenu, JellyContainer, QuestionContainer, AnswerContainer, CodeText],
         },

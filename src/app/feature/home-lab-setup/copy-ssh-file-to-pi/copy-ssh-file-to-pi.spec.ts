@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CopySshFileToPi } from './copy-ssh-file-to-pi';
-import { describe, beforeEach, it, expect } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { CopySshFileToPi3 } from '../copy-ssh-file-to-pi-3/copy-ssh-file-to-pi-3';
 import { AnswerContainer } from '@core/answer-container/answer-container';
 import { JellyContainer } from '@core/jelly-container/jelly-container';
 import { QuestionContainer } from '@core/question-container/question-container';
@@ -38,7 +37,7 @@ describe('CopySshFileToPi', () => {
       imports: [CopySshFileToPi],
       providers: [provideHttpClient(), provideHttpClientTesting()],
     })
-      .overrideComponent(CopySshFileToPi3, {
+      .overrideComponent(CopySshFileToPi, {
         remove: {
           imports: [
             AnswerContainer,

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SetupSsh } from './setup-ssh';
-import { CopySshFileToPi3 } from '../copy-ssh-file-to-pi-3/copy-ssh-file-to-pi-3';
 import { AnswerContainer } from '@core/answer-container/answer-container';
 import { JellyContainer } from '@core/jelly-container/jelly-container';
 import { QuestionContainer } from '@core/question-container/question-container';
@@ -36,7 +35,7 @@ describe('SetupSsh', () => {
     await TestBed.configureTestingModule({
       imports: [SetupSsh],
     })
-      .overrideComponent(CopySshFileToPi3, {
+      .overrideComponent(SetupSsh, {
         remove: {
           imports: [
             AnswerContainer,
