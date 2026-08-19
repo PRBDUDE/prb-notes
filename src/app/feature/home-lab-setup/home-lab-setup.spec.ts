@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { describe, it, expect, beforeEach } from 'vitest';
 import { HomeLabSetup } from './home-lab-setup';
 
 describe('HomeLabSetup', () => {
@@ -13,10 +13,14 @@ describe('HomeLabSetup', () => {
 
     fixture = TestBed.createComponent(HomeLabSetup);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should set pageSubtitle to "Home Lab Setup"', () => {
+    expect(component.pageSubtitle).toBe('Home Lab Setup');
   });
 });
