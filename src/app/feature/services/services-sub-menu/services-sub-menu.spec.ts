@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { describe, beforeEach, expect, it } from 'vitest';
 import { ServicesSubMenu } from './services-sub-menu';
 
 describe('ServicesSubMenu', () => {
@@ -13,10 +13,15 @@ describe('ServicesSubMenu', () => {
 
     fixture = TestBed.createComponent(ServicesSubMenu);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the component instance', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should apply the "left-menu" host class', () => {
+    const hostElement: HTMLElement = fixture.nativeElement;
+    expect(hostElement.classList.contains('left-menu')).toBe(true);
   });
 });

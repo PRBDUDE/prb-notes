@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, beforeEach, it, expect } from 'vitest';
 import { Footer } from './footer';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('Footer Component', () => {
   let component: Footer;
@@ -10,13 +8,7 @@ describe('Footer Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        Footer
-      ],
-      providers: [
-        provideHttpClient(),
-        provideHttpClientTesting()
-      ]
+      imports: [Footer],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Footer);
@@ -26,5 +18,11 @@ describe('Footer Component', () => {
 
   it('should create the component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the Copyright component', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const copyrightElement = compiled.querySelector('prb-copyright');
+    expect(copyrightElement).not.toBeNull();
   });
 });
