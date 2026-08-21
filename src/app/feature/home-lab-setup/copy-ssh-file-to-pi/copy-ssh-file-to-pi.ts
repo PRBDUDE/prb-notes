@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
 import { HomeLabSubMenu } from '../home-lab-sub-menu/home-lab-sub-menu';
-import { CodeText } from '@core/code-text/code-text';
-import { JellyContainer } from '@core/jelly-container/jelly-container';
-import { QuestionContainer } from '@core/question-container/question-container';
-import { AnswerContainer } from '@core/answer-container/answer-container';
-import { CardContainer } from '@core/card-container/card-container';
-import { CardHeader } from '@core/card-header/card-header';
-import { CardBody } from '@core/card-body/card-body';
-import { BlockQuote } from '@core/block-quote/block-quote';
-import { Comment } from '@core/comment/comment';
-import { ClassName } from '@core/class-name/class-name';
-import { Indent } from '@core/indent/indent';
+import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
+import { CodeText } from '@core/code-text';
+import { JellyContainer } from '@core/jelly-container';
+import { QuestionContainer } from '@core/question-container';
+import { AnswerContainer } from '@core/answer-container';
+import { CardContainer } from '@core/card-container';
+import { CardHeader } from '@core/card-header';
+import { CardBody } from '@core/card-body';
+import { BlockQuote } from '@core/block-quote';
+import { Comment } from '@core/comment';
+import { ClassName } from '@core/class-name';
+import { Indent } from '@core/indent';
 
 @Component({
   selector: 'prb-copy-ssh-file-to-pi',

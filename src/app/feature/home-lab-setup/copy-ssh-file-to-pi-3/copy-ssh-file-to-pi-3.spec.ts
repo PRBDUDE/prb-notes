@@ -1,27 +1,27 @@
 import { describe, expect, it } from 'vitest';
 import { CopySshFileToPi3 } from './copy-ssh-file-to-pi-3';
-import { MockAnswerContainer } from '@mock/mock-answer-container';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { AnswerContainer } from '@core/answer-container/answer-container';
-import { JellyContainer } from '@core/jelly-container/jelly-container';
+import { HomeLabSubMenu } from '../home-lab-sub-menu/home-lab-sub-menu';
+import { AnswerContainer } from '@core/answer-container';
+import { JellyContainer } from '@core/jelly-container';
+import { QuestionContainer } from '@core/question-container';
+import { CardContainer } from '@core/card-container';
+import { CardHeader } from '@core/card-header';
+import { CardBody } from '@core/card-body';
+import { CodeText } from '@core/code-text';
+import { BlockQuote } from '@core/block-quote';
+import { ClassName } from '@core/class-name';
+import { MockAnswerContainer } from '@mock/mock-answer-container';
 import { MockJellyContainer } from '@mock/mock-jelly-container';
-import { QuestionContainer } from '@core/question-container/question-container';
 import { MockQuestionContainer } from '@mock/mock-question-container';
 import { MockHomeLabSubMenu } from '@mock/mock-home-lab-sub-menu';
-import { CardContainer } from '@core/card-container/card-container';
-import { HomeLabSubMenu } from '../home-lab-sub-menu/home-lab-sub-menu';
 import { MockCardContainer } from '@mock/mock-card-container';
-import { CardHeader } from '@core/card-header/card-header';
 import { MockCardHeader } from '@mock/mock-card-header';
-import { CardBody } from '@core/card-body/card-body';
 import { MockCardBody } from '@mock/mock-card-body';
-import { CodeText } from '@core/code-text/code-text';
 import { MockCodeText } from '@mock/mock-code-text';
-import { BlockQuote } from '@core/block-quote/block-quote';
 import { MockBlockQuote } from '@mock/mock-block-quote';
-import { ClassName } from '@core/class-name/class-name';
 import { MockClassName } from '@mock/mock-class-name';
 
 describe('CopySshFileToPi3 Component (Isolated)', () => {

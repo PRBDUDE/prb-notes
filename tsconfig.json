@@ -15,14 +15,45 @@
     "module": "preserve",
     "paths": {
       "@core/*": [
-        "./src/app/core/*",
-        "./src/app/core/header/*",
+        "./src/app/core/answer-container/*",
+        "./src/app/core/base-page-with-subtitle/*",
+        "./src/app/core/block-quote/*",
+        "./src/app/core/card-container/*",
+        "./src/app/core/card-header/*",
+        "./src/app/core/card-body/*",
+        "./src/app/core/class-name/*",
+        "./src/app/core/code-text/*",
+        "./src/app/core/comment/*",
         "./src/app/core/footer/*",
+        "./src/app/core/header/*",
+        "./src/app/core/html-tag/*",
+        "./src/app/core/indent/*",
+        "./src/app/core/jelly-container/*",
+        "./src/app/core/key-word/*",
         "./src/app/core/menu/*",
-        "./src/app/core/services/*"
+        "./src/app/core/method-name/*",
+        "./src/app/core/note/*",
+        "./src/app/core/numeric-value/*",
+        "./src/app/core/property/*",
+        "./src/app/core/question-container/*",
+        "./src/app/core/services/*",
+        "./src/app/core/string/*",
+        "./src/app/core/theme-toggle/*",
+        "./src/app/core/*"
       ],
       "@mock/*": [
         "./src/test/mocks/*"
+      ],
+      "@css-class/*": [
+        "./src/app/feature/layout/css-class/css-both-side-menu-layout/*",
+        "./src/app/feature/layout/css-class/css-content/*",
+        "./src/app/feature/layout/css-class/css-footer/*",
+        "./src/app/feature/layout/css-class/css-header/*",
+        "./src/app/feature/layout/css-class/css-left-menu/*",
+        "./src/app/feature/layout/css-class/css-left-side-menu-layout/*",
+        "./src/app/feature/layout/css-class/css-menu-bar/*",
+        "./src/app/feature/layout/css-class/css-no-side-menu-layout/*",
+        "./src/app/feature/layout/css-class/css-right-menu/*"
       ]
     }
   },
