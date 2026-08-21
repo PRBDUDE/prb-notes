@@ -1,0 +1,18 @@
+@use "mixins";
+
+.page-content-container {
+  @include mixins.mix-left-and-right-side-menu();
+}
+
+.illustration {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.card {
+  width: 270px;
+}
