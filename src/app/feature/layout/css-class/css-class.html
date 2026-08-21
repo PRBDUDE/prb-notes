@@ -1,0 +1,13 @@
+<div>.<html-tag>{{ className() }}</html-tag> &#123;</div>
+@for (cssProperty of properties(); track cssProperty) {
+  <prb-indent [level]="1">{{ cssProperty.property }}:
+    @if (Array.isArray(cssProperty.value)) {
+      @for (value of cssProperty.value; track value) {
+        <prb-indent [level]="1"><prb-string>{{ value }}</prb-string></prb-indent>
+      }
+    } @else {
+      <prb-string>{{ cssProperty.value }}</prb-string>;
+    }
+  </prb-indent>
+}
+<div>&#125;</div>
