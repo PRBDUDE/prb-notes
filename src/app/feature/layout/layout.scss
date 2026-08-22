@@ -33,8 +33,6 @@
 
   .l-menu {
     grid-area: demo-l-menu;
-    background-color: lightgray;
-    color: black;
   }
 
   .content {
@@ -46,8 +44,6 @@
 
   .r-menu {
     grid-area: demo-r-menu;
-    background-color: lightgray;
-    color: black;
   }
 
   .l-menu,
@@ -56,6 +52,8 @@
     font-size: 10pt;
     text-align: center;
     border: 1px solid black;
+    background-color: lightgray;
+    color: black;
   }
 
   .l-menu,
