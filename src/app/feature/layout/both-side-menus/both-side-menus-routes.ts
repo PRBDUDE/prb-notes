@@ -1,9 +1,9 @@
 import { Route } from '@angular/router';
 
-export const right_side_menu_routes: Route[] = [
+export const both_side_menus_routes: Route[] = [
   {
     path: '',
-    loadComponent: () => import('./right-side-menu').then(m => m.RightSideMenu),
+    loadComponent: () => import('./both-side-menus').then(m => m.BothSideMenus),
     title: 'Right Side Menu Layout',
   },
   {

@@ -7,11 +7,11 @@ import {
 } from '../layout-left-and-right-menu-content/layout-left-and-right-menu-content';
 
 @Component({
-  selector: 'prb-right-side-menu',
+  selector: 'prb-both-side-menus',
   imports: [LayoutSubMenu, SubMenu, LayoutLeftAndRightMenuContent],
-  templateUrl: './right-side-menu.html',
-  styleUrl: './right-side-menu.scss',
+  templateUrl: './both-side-menus.html',
+  styleUrl: './both-side-menus.scss',
 })
-export class RightSideMenu extends BasePageWithSubtitle {
-  override pageSubtitle = 'Layout - Right Side Menu';
+export class BothSideMenus extends BasePageWithSubtitle {
+  override pageSubtitle = 'Layout - Both Side Menus';
 }

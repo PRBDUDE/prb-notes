@@ -32,7 +32,7 @@ import { CssRightMenu } from '@css-class/css-right-menu';
     CssRightMenu,
   ],
   templateUrl: './grid-layout.html',
-  styleUrl: '../right-side-menu.scss',
+  styleUrl: '../both-side-menus.scss',
 })
 export class GridLayout extends BasePageWithSubtitle {
   override pageSubtitle = 'Layout - Both Side Menus - Grid Layout';

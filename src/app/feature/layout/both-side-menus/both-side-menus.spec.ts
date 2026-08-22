@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RightSideMenu } from './right-side-menu';
+import { BothSideMenus } from './both-side-menus';
 
-describe('RightSideMenu', () => {
-  let component: RightSideMenu;
-  let fixture: ComponentFixture<RightSideMenu>;
+describe('BothSideMenus', () => {
+  let component: BothSideMenus;
+  let fixture: ComponentFixture<BothSideMenus>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RightSideMenu],
+      imports: [BothSideMenus],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(RightSideMenu);
+    fixture = TestBed.createComponent(BothSideMenus);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

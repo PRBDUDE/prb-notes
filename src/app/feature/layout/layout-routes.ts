@@ -13,10 +13,10 @@ export const layout_routes: Routes = [
     title: 'Left Side Menu',
   },
   {
-    path: 'right-side-menu',
+    path: 'both-side-menus',
     loadChildren: () =>
-      import('./right-side-menu/right-side-menu-routes').then((m) => m.right_side_menu_routes),
-    title: 'Right Side Menu',
+      import('./both-side-menus/both-side-menus-routes').then((m) => m.both_side_menus_routes),
+    title: 'Both Side Menus',
   },
   {
     path: 'no-side-menu',
