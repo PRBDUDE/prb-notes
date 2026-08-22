@@ -8,6 +8,7 @@ import { CssProperty } from './css-property';
   selector: 'prb-css-class',
   imports: [HtmlTag, Indent, String],
   templateUrl: './css-class.html',
+  styleUrl: './css-class.scss'
 })
 export class CssClass {
   className = input.required<string>();
