@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CssProperty } from '../css-property';
 import { CssClass } from '../css-class';
+import { GetDemoPageWidth } from '../get-demo-page-width';
 
 @Component({
   selector: 'css-both-side-menu-layout',
@@ -10,9 +11,9 @@ import { CssClass } from '../css-class';
     [properties]="layoutProperties"
   />`,
 })
-export class CssBothSideMenuLayout {
+export class CssBothSideMenuLayout extends GetDemoPageWidth {
   layoutProperties: CssProperty[] = [
-    { property: 'width', value: '500px' },
+    { property: 'width', value: this.getPageWidth() },
     { property: 'border', value: '1px solid white' },
     { property: 'display', value: 'grid' },
     {
