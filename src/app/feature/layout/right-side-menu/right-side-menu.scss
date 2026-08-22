@@ -9,10 +9,19 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 2rem;
 }
 
-.card {
-  width: 305px;
+.card-layout {
+  width: 280px;
+}
+
+.card-base {
+  width: 220px;
+}
+
+card-body {
+  max-height: var(--layout-scss-max-height);
+  overflow: auto
 }
