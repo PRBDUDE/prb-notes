@@ -31,12 +31,31 @@ body {
       scrollbar-gutter: stable;
     }
 
+    .left-menu {
+      grid-area: left-menu-panel;
+    }
+
     .page-content-container {
       grid-area: content-panel;
 
       .page-content {
         @include mixins.mix-page-content;
       }
+    }
+
+    .right-menu {
+      grid-area: right-menu-panel;
+    }
+
+    .page-content-container,
+    .left-menu,
+    .right-menu {
+      height: var(--content-height);
+    }
+
+    .left-menu,
+    .right-menu {
+      background-color: var(--color-menu-background);
     }
 
     prb-footer {

@@ -11,20 +11,21 @@
   @include mix-page-base;
 }
 
-@mixin mix-left-menu {
-  .left-menu {
-    grid-area: left-menu-panel;
-    background-color: var(--color-menu-background);
-    height: var(--content-height);
-  }
-}
-
-@mixin mix-right-menu {
-  .right-menu {
-    grid-area: right-menu-panel;
-    background-color: var(--color-menu-background);
-  }
-}
+//@mixin mix-left-menu {
+//  .left-menu {
+//    grid-area: left-menu-panel;
+//    background-color: var(--color-menu-background);
+//    height: var(--content-height);
+//  }
+//}
+//
+//@mixin mix-right-menu {
+//  .right-menu {
+//    grid-area: right-menu-panel;
+//    background-color: var(--color-menu-background);
+//    height: var(--content-height);
+//  }
+//}
 
 @mixin mix-left-side-menu {
   display: grid;
@@ -32,7 +33,7 @@
     "left-menu-panel main-content-panel";
   grid-template-columns: var(--left-side-panel-menu-width) auto;
   @include mix-page-base;
-  @include mix-left-menu;
+  //@include mix-left-menu;
 }
 
 @mixin mix-left-and-right-side-menu {
@@ -41,8 +42,8 @@
     "left-menu-panel main-content-panel right-menu-panel";
   grid-template-columns: var(--left-side-panel-menu-width) auto  var(--right-side-panel-menu-width);
   @include mix-page-base;
-  @include mix-left-menu;
-  @include mix-right-menu;
+  //@include mix-left-menu;
+  //@include mix-right-menu;
 
   .page-content {
     grid-area: main-content-panel;
