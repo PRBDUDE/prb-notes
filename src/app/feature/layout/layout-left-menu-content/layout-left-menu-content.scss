@@ -1,0 +1,8 @@
+.demo-page {
+  grid-template-areas:
+    "demo-header demo-header"
+    "demo-menu-bar demo-menu-bar"
+    "demo-l-menu demo-content"
+    "demo-footer demo-footer";
+  grid-template-columns: 100px auto;
+}

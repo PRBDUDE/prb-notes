@@ -29,10 +29,11 @@ describe('Menu', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render 5 navigation links with correct hrefs and text', () => {
+  it('should render 6 navigation links with correct hrefs and text', () => {
     const expectedLinks = [
       { text: 'Home', href: '/home' },
       { text: 'Home Lab Setup', href: '/home-lab-setup' },
+      { text: 'Layout', href: '/layout' },
       { text: 'Micro Front Ends', href: '/micro-front-ends' },
       { text: 'Services', href: '/services' },
       { text: 'Theme', href: '/theme' },
@@ -40,7 +41,7 @@ describe('Menu', () => {
 
     const linkElements = fixture.debugElement.queryAll(By.css('nav menu li a'));
 
-    expect(linkElements.length).toBe(5);
+    expect(linkElements.length).toBe(6);
 
     linkElements.forEach((de, index) => {
       const anchor: HTMLAnchorElement = de.nativeElement;

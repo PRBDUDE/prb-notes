@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, beforeEach, it, expect } from 'vitest';
-import { Comment } from '@core/comment/comment';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing'; // Adjust path as needed
+import { Comment } from '@core/comment';
 
 // Host component to test content projection (<ng-content>)
 @Component({

@@ -257,7 +257,7 @@ export function tokenizeWithWhitespace(input: string): Token[] {
 
 // const codeSnippet = `
 // import { Component } from '@angular/core';
-// import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
+// import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 // import { SubMenu } from '../sub-menu/sub-menu';
 //
 // @Component({

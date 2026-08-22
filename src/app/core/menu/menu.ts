@@ -13,6 +13,9 @@ import { Component } from '@angular/core';
           <a href="/home-lab-setup">Home Lab Setup</a>
         </li>
         <li>
+          <a href="/layout">Layout</a>
+        </li>
+        <li>
           <a href="/micro-front-ends">Micro Front Ends</a>
         </li>
         <li>

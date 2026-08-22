@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Header } from './header';
-import { HeaderService } from '@core/header-service';
 import { beforeEach, describe, expect, it } from 'vitest';
+import { HeaderService } from '@core/header-service';
 import { MockHeaderService } from '@mock/mock-header-service';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';

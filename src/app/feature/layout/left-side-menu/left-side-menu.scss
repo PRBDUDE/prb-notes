@@ -1,0 +1,27 @@
+@use "mixins";
+
+.page-content-container {
+  @include mixins.mix-left-and-right-side-menu();
+}
+
+.illustration {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.card-layout {
+  width: 240px;
+}
+
+.card-base {
+  width: 230px;
+}
+
+card-body {
+  max-height: var(--layout-scss-max-height);
+  overflow: auto
+}
