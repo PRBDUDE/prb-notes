@@ -1,0 +1,16 @@
+<div class="layout-container">
+  <div class="layout-view" [class.active]="currentLayout() === 0">
+    <p>No Side Menu</p>
+    <prb-layout-content-only />
+  </div>
+
+  <div class="layout-view" [class.active]="currentLayout() === 1">
+    <p>Left Side Menu</p>
+    <prb-layout-left-menu-content />
+  </div>
+
+  <div class="layout-view" [class.active]="currentLayout() === 2">
+    <p>Left and Right Side Menu</p>
+    <prb-layout-left-and-right-menu-content />
+  </div>
+</div>

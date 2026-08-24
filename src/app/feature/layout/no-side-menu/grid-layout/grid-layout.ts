@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
-import { LayoutContentOnly } from '../../layout-content-only/layout-content-only';
+import { LayoutContentOnly } from '@layout/layout-content-only';
 import { LayoutSubMenu } from '../../layout-sub-menu/layout-sub-menu';
 import { SubMenu } from '../sub-menu/sub-menu';
 import { CardContainer } from '@core/card-container';

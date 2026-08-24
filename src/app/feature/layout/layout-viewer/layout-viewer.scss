@@ -1,0 +1,22 @@
+.layout-container {
+  position: relative;
+  min-height: 330px;
+  width: var(--layout-demo-page-width);
+  text-align: center;
+}
+
+.layout-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+  pointer-events: none;
+}
+
+.layout-view.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}

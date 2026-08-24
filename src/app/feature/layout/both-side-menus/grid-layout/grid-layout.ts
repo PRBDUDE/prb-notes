@@ -10,7 +10,7 @@ import { CssMenuBar } from '@css-class/css-menu-bar';
 import { CssBothSideMenuLayout } from '@css-class/css-both-side-menu-layout';
 import { SubMenu } from '../sub-menu/sub-menu';
 import { LayoutSubMenu } from '../../layout-sub-menu/layout-sub-menu';
-import { LayoutLeftAndRightMenuContent } from '../../layout-left-and-right-menu-content/layout-left-and-right-menu-content';
+import { LayoutLeftAndRightMenuContent } from '@layout/layout-left-and-right-menu-content';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
 import { CssRightMenu } from '@css-class/css-right-menu';
 
