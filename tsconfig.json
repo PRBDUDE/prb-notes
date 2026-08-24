@@ -54,6 +54,11 @@
         "./src/app/feature/layout/css-class/css-menu-bar/*",
         "./src/app/feature/layout/css-class/css-no-side-menu-layout/*",
         "./src/app/feature/layout/css-class/css-right-menu/*"
+      ],
+      "@layout/*": [
+        "./src/app/feature/layout/layout-content-only/*",
+        "./src/app/feature/layout/layout-left-menu-content/*",
+        "./src/app/feature/layout/layout-left-and-right-menu-content/*"
       ]
     }
   },

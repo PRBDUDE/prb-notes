@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LayoutSubMenu } from '../layout-sub-menu/layout-sub-menu';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
 import { SubMenu } from './sub-menu/sub-menu';
-import { LayoutLeftMenuContent } from '../layout-left-menu-content/layout-left-menu-content';
+import { LayoutLeftMenuContent } from '@layout/layout-left-menu-content';
 
 @Component({
   selector: 'prb-left-side-menu',
