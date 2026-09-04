@@ -5,6 +5,9 @@ import { Component, input } from '@angular/core';
   selector: 'note-section',
   styleUrl: './note-section.scss',
   template: `
+    <div class="note-section-description">
+      {{ description() }}
+    </div>
     <ng-content></ng-content>
   `,
   host: {
@@ -15,4 +18,5 @@ import { Component, input } from '@angular/core';
 })
 export class NoteSection {
   tagName = input<string>('');
+  description = input<string>('');
 }
