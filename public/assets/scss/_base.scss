@@ -3,6 +3,7 @@
 @forward "list";
 @forward "header";
 @forward "layout";
+@forward "note-section";
 @forward "mixins";
 
 :root {
@@ -18,10 +19,6 @@
   --layout-scss-width: 300px;
   --layout-scss-max-height: 400px;
   --layout-scss-font-size: 9pt;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 @media only screen and (max-width: 1023px) {
