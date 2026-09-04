@@ -39,6 +39,7 @@
         "./src/app/core/services/*",
         "./src/app/core/string/*",
         "./src/app/core/theme-toggle/*",
+        "./src/app/core/note-section/*",
         "./src/app/core/*"
       ],
       "@mock/*": [

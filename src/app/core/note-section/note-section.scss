@@ -1,0 +1,17 @@
+@use "base";
+
+.note-section {
+  animation: fade-in forwards;
+  animation-timeline: view();
+}
+
+@keyframes fade-in {
+  0% {
+    scale: .6;
+    opacity: 0;
+  }
+  40%, 100% {
+    scale: 1;
+    opacity: 1;
+  }
+}
