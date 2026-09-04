@@ -2,19 +2,17 @@
   <prb-layout-sub-menu />
 
   <div class="page-content">
-    <p>
-      Content only - no side menus.
-      Use this when you only have content and no need to go further.
-    </p>
+    <note-section
+      [tagName]="'no-side-menu'"
+      [description]="'No Side Menu'">
+      <prb-no-side-menu-content />
+    </note-section>
 
-    <p>
-      Examples of a page where there is no need of side menus would be the About page.
-      An about page will provide information about the application or the company.
-    </p>
-
-    <div class="layout-samples">
-      <prb-layout-content-only />
-    </div>
+    <note-section
+      [tagName]="'grid-layout'"
+      [description]="'No Side Menu - Grid Layout'">
+      <prb-grid-layout-content />
+    </note-section>
   </div>
 
   <prb-sub-menu />
