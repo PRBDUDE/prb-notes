@@ -9,7 +9,7 @@ import { Component, input } from '@angular/core';
   `,
   host: {
     class: 'note-section',
-    role: 'note',
+    role: 'container',
     '[id]': 'tagName()'
   },
 })
