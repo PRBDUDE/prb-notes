@@ -3,5 +3,5 @@
 :host {
   display: block;
   margin: 0 auto;
-  min-height: 80vh;
+  min-height: calc(var(--content-height) - 2em);
 }
