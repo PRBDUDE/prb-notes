@@ -20,8 +20,8 @@ describe('ThemeSubMenu', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have the "left-menu" host class', () => {
+  it('should have the "prb-left-menu" host class', () => {
     const hostElement: HTMLElement = fixture.nativeElement;
-    expect(hostElement.classList.contains('left-menu')).toBe(true);
+    expect(hostElement.classList.contains('prb-left-menu')).toBe(true);
   });
 });

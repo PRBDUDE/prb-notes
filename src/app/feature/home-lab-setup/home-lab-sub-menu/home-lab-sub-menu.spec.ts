@@ -23,8 +23,8 @@ describe('HomeLabSubMenu', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have host class "left-menu"', () => {
+  it('should have host class "prb-left-menu"', () => {
     const hostNativeElement: HTMLElement = fixture.nativeElement;
-    expect(hostNativeElement.classList.contains('left-menu')).toBe(true);
+    expect(hostNativeElement.classList.contains('prb-left-menu')).toBe(true);
   });
 });
