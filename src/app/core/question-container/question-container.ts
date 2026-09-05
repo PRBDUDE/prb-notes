@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
     <ng-content></ng-content>
   `,
   styleUrl: './question-container.scss',
+  host: {
+    class: 'question-container',
+    role: 'container'
+  }
 })
 export class QuestionContainer {}
