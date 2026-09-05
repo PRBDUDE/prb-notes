@@ -31,7 +31,7 @@ body {
       scrollbar-gutter: stable;
     }
 
-    .left-menu {
+    .prb-left-menu {
       grid-area: left-menu-panel;
     }
 
@@ -43,18 +43,18 @@ body {
       }
     }
 
-    .right-menu {
+    .prb-right-menu {
       grid-area: right-menu-panel;
     }
 
     .page-content-container,
-    .left-menu,
-    .right-menu {
+    .prb-left-menu,
+    .prb-right-menu {
       height: var(--content-height);
     }
 
-    .left-menu,
-    .right-menu {
+    .prb-left-menu,
+    .prb-right-menu {
       background-color: var(--color-menu-background);
     }
 

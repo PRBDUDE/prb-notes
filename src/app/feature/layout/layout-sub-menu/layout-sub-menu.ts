@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './layout-sub-menu.html',
   styleUrl: './layout-sub-menu.scss',
   host: {
-    class: 'left-menu',
+    class: 'prb-left-menu',
   },
 })
 export class LayoutSubMenu {}

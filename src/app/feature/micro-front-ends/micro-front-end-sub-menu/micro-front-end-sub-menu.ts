@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './micro-front-end-sub-menu.html',
   styleUrl: './micro-front-end-sub-menu.scss',
   host: {
-    class: 'left-menu',
+    class: 'prb-left-menu',
   },
 })
 export class MicroFrontEndSubMenu {}

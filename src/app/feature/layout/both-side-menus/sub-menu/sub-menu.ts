@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './sub-menu.html',
   styleUrl: './sub-menu.scss',
   host: {
-    class: 'right-menu',
+    class: 'prb-right-menu',
   },
 })
 export class SubMenu {}
