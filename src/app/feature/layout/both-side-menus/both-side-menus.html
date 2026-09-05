@@ -2,21 +2,17 @@
   <prb-layout-sub-menu />
 
   <div class="page-content">
-    <p>
-      Both Sides menu Layout displays the links to dig deeper into the menu item selected on the left side.
-    </p>
+    <note-section
+      [tagName]="'both-side-menus'"
+      [description]="'Both Side Menus'">
+      <prb-both-side-menus-content/>
+    </note-section>
 
-    <p>
-      Left and Right Side menu Layout displays the menu on the Left and Right side of the page.
-      The Left menu is used like a submenu of the top menu-bar.
-      The Right menu is used like a submenu of the Left menu.
-      In this application (PRB Notes), I place the primary link at the top of the menu to show which top-menu item was
-      selected to get to this page.
-    </p>
-
-    <div class="layout-samples">
-      <prb-layout-left-and-right-menu-content />
-    </div>
+    <note-section
+      [tagName]="'grid-layout'"
+      [description]="'Both Side Menus - Grid Layout'">
+      <prb-grid-layout-content/>
+    </note-section>
   </div>
 
   <prb-sub-menu />

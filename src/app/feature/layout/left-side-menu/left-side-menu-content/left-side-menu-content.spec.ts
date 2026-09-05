@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { LeftSideMenuContent } from './left-side-menu-content';
 
-import { GridLayout } from './grid-layout';
-
-describe('GridLayout', () => {
-  let component: GridLayout;
-  let fixture: ComponentFixture<GridLayout>;
+describe('LeftSideMenuContent', () => {
+  let component: LeftSideMenuContent;
+  let fixture: ComponentFixture<LeftSideMenuContent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GridLayout],
+      imports: [LeftSideMenuContent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(GridLayout);
+    fixture = TestBed.createComponent(LeftSideMenuContent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

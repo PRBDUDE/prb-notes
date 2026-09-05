@@ -60,6 +60,8 @@
   --color-secondary-button-hover: hsl(var(--base-hue) 30% 40%);
   --color-secondary-button-text: hsl(var(--base-hue) 20% 10%);
 
+  --color-note-section-text: hsl(var(--base-hue) 20% 80%);
+
   &[class*="prb-dark-theme"] {
     --color-header-background: hsl(var(--base-hue) 40% 20%);
     --color-header-text: hsl(var(--base-hue) 10% 100%);
@@ -96,6 +98,8 @@
     --color-h1: hsl(var(--base-hue) 100% 80%);
     --color-h2: hsl(var(--base-hue) 90% 40%);
     --color-h3: hsl(var(--base-hue) 40% 35%);
+
+    --color-note-section-text: hsl(var(--base-hue) 20% 100%);
   }
 }
 
