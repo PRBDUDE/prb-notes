@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
     <ng-content></ng-content>
   `,
   styleUrl: './card-body.scss',
+  host: {
+    class: 'card-body',
+    role: 'container',
+  }
 })
 export class CardBody {}
