@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   template: `
     <ng-content></ng-content>
   `,
-  styleUrl: './jelly-container.scss'
+  styleUrl: './jelly-container.scss',
+  host: {
+    class: 'jelly-container',
+    role: 'container',
+  }
 })
 export class JellyContainer {}
