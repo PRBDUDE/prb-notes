@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { GridLayoutContent } from './grid-layout-content';
 
-import { GridLayout } from './grid-layout';
-
-describe('GridLayout', () => {
-  let component: GridLayout;
-  let fixture: ComponentFixture<GridLayout>;
+describe('GridLayoutContent', () => {
+  let component: GridLayoutContent;
+  let fixture: ComponentFixture<GridLayoutContent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GridLayout],
+      imports: [GridLayoutContent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(GridLayout);
+    fixture = TestBed.createComponent(GridLayoutContent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
