@@ -40,7 +40,6 @@ body {
 
       .page-content {
         @include mixins.mix-page-content;
-        scroll-behavior: smooth;
       }
     }
 
@@ -63,4 +62,8 @@ body {
       grid-area: footer-panel;
     }
   }
+}
+
+.page-content {
+  scroll-behavior: smooth;
 }
