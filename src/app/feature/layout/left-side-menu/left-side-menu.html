@@ -2,16 +2,17 @@
   <prb-layout-sub-menu />
 
   <div class="page-content">
-    <p>
-      Left Side menu Layout displays only the menu on the Left side of the page.
-      This is used like a submenu of the top menu-bar.
-      In this application (PRB Notes), I place the primary link at the top of the menu to show which top-menu item was
-      selected to get to this page.
-    </p>
+    <note-section
+      [tagName]="'left-side-menu'"
+      [description]="'Left Side Menu'">
+      <prb-left-side-menu-content/>
+    </note-section>
 
-    <div class="layout-samples">
-      <prb-layout-left-menu-content />
-    </div>
+    <note-section
+      [tagName]="'grid-layout'"
+      [description]="'Left Side Menu - Grid Layout'">
+      <prb-grid-layout-content/>
+    </note-section>
   </div>
 
   <prb-sub-menu />
