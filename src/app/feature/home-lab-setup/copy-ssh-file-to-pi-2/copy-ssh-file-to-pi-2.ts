@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HomeLabSubMenu } from '../home-lab-sub-menu/home-lab-sub-menu';
+import { SubMenu } from '../sub-menu/sub-menu';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { JellyContainer } from '@core/jelly-container';
 import { QuestionContainer } from '@core/question-container';
@@ -14,7 +14,7 @@ import { ClassName } from '@core/class-name';
 @Component({
   selector: 'prb-copy-ssh-file-to-pi-2',
   imports: [
-    HomeLabSubMenu,
+    SubMenu,
     JellyContainer,
     QuestionContainer,
     AnswerContainer,

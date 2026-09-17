@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HomeLabSubMenu } from '../home-lab-sub-menu/home-lab-sub-menu';
+import { SubMenu } from '../sub-menu/sub-menu';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { CodeText } from '@core/code-text';
 import { JellyContainer } from '@core/jelly-container';
@@ -16,7 +16,7 @@ import { Indent } from '@core/indent';
 @Component({
   selector: 'prb-copy-ssh-file-to-pi',
   imports: [
-    HomeLabSubMenu,
+    SubMenu,
     CodeText,
     JellyContainer,
     QuestionContainer,

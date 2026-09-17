@@ -4,7 +4,7 @@ import { expect, it } from 'vitest';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { CopySshFileToPi4 } from './copy-ssh-file-to-pi-4';
-import { HomeLabSubMenu } from '../home-lab-sub-menu/home-lab-sub-menu';
+import { SubMenu } from '../sub-menu/sub-menu';
 import { AnswerContainer } from '@core/answer-container';
 import { JellyContainer } from '@core/jelly-container';
 import { QuestionContainer } from '@core/question-container';
@@ -17,7 +17,7 @@ import { ClassName } from '@core/class-name';
 import { MockAnswerContainer } from '@mock/mock-answer-container';
 import { MockJellyContainer } from '@mock/mock-jelly-container';
 import { MockQuestionContainer } from '@mock/mock-question-container';
-import { MockHomeLabSubMenu } from '@mock/mock-home-lab-sub-menu';
+import { MockSubMenu } from '@mock/mock-sub-menu';
 import { MockCardContainer } from '@mock/mock-card-container';
 import { MockCardHeader } from '@mock/mock-card-header';
 import { MockCardBody } from '@mock/mock-card-body';
@@ -40,7 +40,7 @@ describe('CopySshFileToPi4', () => {
             AnswerContainer,
             JellyContainer,
             QuestionContainer,
-            HomeLabSubMenu,
+            SubMenu,
             CardContainer,
             CardHeader,
             CardBody,
@@ -54,7 +54,7 @@ describe('CopySshFileToPi4', () => {
             MockAnswerContainer,
             MockJellyContainer,
             MockQuestionContainer,
-            MockHomeLabSubMenu,
+            MockSubMenu,
             MockCardContainer,
             MockCardHeader,
             MockCardBody,

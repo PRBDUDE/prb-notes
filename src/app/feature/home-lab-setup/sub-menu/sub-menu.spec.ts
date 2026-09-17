@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeLabSubMenu } from './home-lab-sub-menu';
+import { SubMenu } from './sub-menu';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
-describe('HomeLabSubMenu', () => {
-  let component: HomeLabSubMenu;
-  let fixture: ComponentFixture<HomeLabSubMenu>;
+describe('SubMenu', () => {
+  let component: SubMenu;
+  let fixture: ComponentFixture<SubMenu>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HomeLabSubMenu],
+      imports: [SubMenu],
       providers: [provideHttpClient(), provideHttpClientTesting()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HomeLabSubMenu);
+    fixture = TestBed.createComponent(SubMenu);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -1,5 +1,5 @@
 <div class="page-content-container">
-  <prb-home-lab-sub-menu/>
+  <prb-sub-menu />
 
   <div class="page-content">
     <jelly-container>
@@ -15,7 +15,7 @@
         <p>
           Here is how to get your public key onto your Raspberry Pi (pi5) so you can log in securely.
         </p>
-        <hr/>
+        <hr />
         <h1>
           Step 1: Locate the Public Key
         </h1>
@@ -34,7 +34,7 @@
             C:\Users\YourUsername\.ssh\npi502_ed25519.pub
           </card-body>
         </card-container>
-        <hr/>
+        <hr />
         <h1>
           Step 2: Use PSCP to Transfer the Key
         </h1>
@@ -93,7 +93,7 @@
               <div>
                 <class-name>chmod</class-name> 700 ~/.ssh
               </div>
-              <br/>
+              <br />
               <div>
                 <prb-comment># Append the transferred public key to the authorized_keys file</prb-comment>
               </div>
@@ -103,7 +103,7 @@
               <div>
                 <class-name>chmod</class-name> 600 ~/.ssh/authorized_keys
               </div>
-              <br/>
+              <br />
               <div>
                 <prb-comment># Clean up the loose file from your home folder</prb-comment>
               </div>
@@ -113,7 +113,7 @@
             </card-body>
           </card-container>
         </prb-indent>
-        <hr/>
+        <hr />
         <h1>
           Step 4: Configure PuTTY to Use Your Private Key
         </h1>
@@ -159,7 +159,7 @@
             In the left sidebar, navigate to Connection → SSH → Auth → Credentials.
           </li>
           <li>
-            Look for the field labeled Private key file for authentication and click <br/>Browse....
+            Look for the field labeled Private key file for authentication and click <br />Browse....
           </li>
           <li>
             Select your newly saved
@@ -173,7 +173,7 @@
           </li>
           <li>
             Type a name in the Saved Sessions box (e.g.,
-            <code-text>Raspberry Pi 5</code-text>) and click <br/>Save.
+            <code-text>Raspberry Pi 5</code-text>) and click <br />Save.
           </li>
         </ol>
         <p>

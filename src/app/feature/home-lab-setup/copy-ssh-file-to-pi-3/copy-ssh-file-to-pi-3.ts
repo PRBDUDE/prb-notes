@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HomeLabSubMenu } from '../home-lab-sub-menu/home-lab-sub-menu';
+import { SubMenu } from '../sub-menu/sub-menu';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { AnswerContainer } from '@core/answer-container';
 import { JellyContainer } from '@core/jelly-container';
@@ -17,7 +17,7 @@ import { ClassName } from '@core/class-name';
     AnswerContainer,
     JellyContainer,
     QuestionContainer,
-    HomeLabSubMenu,
+    SubMenu,
     CardContainer,
     CardHeader,
     CardBody,
