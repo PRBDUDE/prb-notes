@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { SubMenu } from '../sub-menu/sub-menu';
+import { HomeLabSetupSubMenu } from '../home-lab-setup-sub-menu/home-lab-setup-sub-menu';
 import { CopySshFileToPi2 } from './copy-ssh-file-to-pi-2';
 import { AnswerContainer } from '@core/answer-container';
 import { JellyContainer } from '@core/jelly-container';
@@ -16,7 +16,7 @@ import { ClassName } from '@core/class-name/class-name';
 import { MockAnswerContainer } from '@mock/mock-answer-container';
 import { MockJellyContainer } from '@mock/mock-jelly-container';
 import { MockQuestionContainer } from '@mock/mock-question-container';
-import { MockSubMenu } from '@mock/mock-sub-menu';
+import { MockHomeLabSubMenu } from '@mock/mock-home-lab-sub-menu';
 import { MockCardContainer } from '@mock/mock-card-container';
 import { MockCardHeader } from '@mock/mock-card-header';
 import { MockCardBody } from '@mock/mock-card-body';
@@ -39,7 +39,7 @@ describe('CopySshFileToPi2', () => {
             AnswerContainer,
             JellyContainer,
             QuestionContainer,
-            SubMenu,
+            HomeLabSetupSubMenu,
             CardContainer,
             CardHeader,
             CardBody,
@@ -53,7 +53,7 @@ describe('CopySshFileToPi2', () => {
             MockAnswerContainer,
             MockJellyContainer,
             MockQuestionContainer,
-            MockSubMenu,
+            MockHomeLabSubMenu,
             MockCardContainer,
             MockCardHeader,
             MockCardBody,

@@ -4,7 +4,7 @@ import { SetupSsh } from './setup-ssh';
 import { AnswerContainer } from '@core/answer-container/answer-container';
 import { JellyContainer } from '@core/jelly-container/jelly-container';
 import { QuestionContainer } from '@core/question-container/question-container';
-import { SubMenu } from '../sub-menu/sub-menu';
+import { HomeLabSetupSubMenu } from '../home-lab-setup-sub-menu/home-lab-setup-sub-menu';
 import { CardContainer } from '@core/card-container/card-container';
 import { CardHeader } from '@core/card-header/card-header';
 import { CardBody } from '@core/card-body/card-body';
@@ -16,7 +16,7 @@ import { String } from '@core/string/string';
 import { MockAnswerContainer } from '@mock/mock-answer-container';
 import { MockJellyContainer } from '@mock/mock-jelly-container';
 import { MockQuestionContainer } from '@mock/mock-question-container';
-import { MockSubMenu } from '@mock/mock-sub-menu';
+import { MockHomeLabSubMenu } from '@mock/mock-home-lab-sub-menu';
 import { MockCardContainer } from '@mock/mock-card-container';
 import { MockCardHeader } from '@mock/mock-card-header';
 import { MockCardBody } from '@mock/mock-card-body';
@@ -41,7 +41,7 @@ describe('SetupSsh', () => {
             AnswerContainer,
             JellyContainer,
             QuestionContainer,
-            SubMenu,
+            HomeLabSetupSubMenu,
             CardContainer,
             CardHeader,
             CardBody,
@@ -57,7 +57,7 @@ describe('SetupSsh', () => {
             MockAnswerContainer,
             MockJellyContainer,
             MockQuestionContainer,
-            MockSubMenu,
+            MockHomeLabSubMenu,
             MockCardContainer,
             MockCardHeader,
             MockCardBody,
