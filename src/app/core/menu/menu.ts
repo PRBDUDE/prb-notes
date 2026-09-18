@@ -1,28 +1,29 @@
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'prb-menu',
-  imports: [],
+  imports: [RouterLink, RouterLinkActive],
   template: `
     <nav>
       <menu>
         <li>
-          <a href="/home">Home</a>
+          <a routerLink="/home" [routerLinkActive]="'active'">Home</a>
         </li>
         <li>
-          <a href="/home-lab-setup">Home Lab Setup</a>
+          <a routerLink="/home-lab-setup" [routerLinkActive]="'active'">Home Lab Setup</a>
         </li>
         <li>
-          <a href="/layout">Layout</a>
+          <a routerLink="/layout" [routerLinkActive]="'active'">Layout</a>
         </li>
         <li>
-          <a href="/micro-front-ends">Micro Front Ends</a>
+          <a routerLink="/micro-front-ends" [routerLinkActive]="'active'">Micro Front Ends</a>
         </li>
         <li>
-          <a href="/services">Services</a>
+          <a routerLink="/services" [routerLinkActive]="'active'">Services</a>
         </li>
         <li>
-          <a href="/theme">Theme</a>
+          <a routerLink="/theme" [routerLinkActive]="'active'">Theme</a>
         </li>
       </menu>
     </nav>
