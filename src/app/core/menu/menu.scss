@@ -11,7 +11,6 @@ nav {
     list-style-type: none;
     margin-block-start: 8px;
     margin-block-end: 8px;
-    padding-inline-start: 0;
 
     li {
       &:first-child {
@@ -20,12 +19,13 @@ nav {
 
       a {
         color: inherit;
-        padding: 6px 10px;
+        padding: 3px 10px;
         text-decoration: none;
-      }
+        border-radius: 18px;
 
-      &:hover {
-        background-color: var(--color-menu-background-hover);
+        &:hover {
+          background-color: var(--color-menu-background-hover);
+        }
       }
     }
   }
