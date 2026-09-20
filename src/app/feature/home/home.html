@@ -29,5 +29,14 @@
     <p>
       In each section, I include the prompt used to generate the response.
     </p>
+
+<!--    <form [formGroup]="ratingForm">-->
+<!--      <app-star-rating formControlName="userRating" />-->
+<!--    </form>-->
+    <p>
+      Rating:
+    </p>
+    <prb-star-rating [(rating)]="selectedRating" />
+    <p>Current Value: {{ selectedRating }}</p>
   </div>
 </div>
