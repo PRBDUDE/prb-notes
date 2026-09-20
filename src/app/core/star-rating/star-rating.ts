@@ -1,4 +1,4 @@
-import { Component, forwardRef, input, model } from '@angular/core';
+import { Component, computed, forwardRef, input, model } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -23,10 +23,10 @@ export class StarRating implements ControlValueAccessor {
   maxStars = input<number>(5);
 
   // Readonly mode option
-  disabled = input<number>(0);
+  disabled = input<boolean>(false);
 
   // Array used to iterate over stars in template
-  stars = Array.from({ length: 5 }, (_, i) => i + 1);
+  stars = computed(() => Array.from({ length: this.maxStars() }, (_, i) => i + 1));
 
   // ControlValueAccessor callbacks
   private onChange: (value: number) => void = () => {};
