@@ -29,5 +29,17 @@
     <p>
       In each section, I include the prompt used to generate the response.
     </p>
+
+<!--    <form [formGroup]="ratingForm">-->
+<!--      <app-star-rating formControlName="userRating" />-->
+<!--    </form>-->
+    <p>
+      Rating:
+    </p>
+    <prb-star-rating [(rating)]="selectedRating" />
+    <p>Current Value: {{ selectedRating }}</p>
+
+    <prb-pain-scale-selector [(selectedPainLevel)]="selectedPainLevel" />
+    <p>Current Pain Level: {{ selectedPainLevel }}</p>
   </div>
 </div>
