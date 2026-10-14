@@ -1,17 +1,56 @@
-import { Component, input } from '@angular/core';
-
-export type IndentLevelType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'prb-indent',
+  selector:
+    'indent-1, indent-2, indent-3, indent-4, indent-5, indent-6, indent-7, indent-8, indent-9, indent-10',
   imports: [],
-  template: `
-    <div [class]="'indent-' + level()">
-      <ng-content></ng-content>
-    </div>
-  `,
-  styleUrl: './indent.scss',
+  template: `<ng-content></ng-content>`,
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+
+      :host(indent-1) {
+        margin-left: 1rem;
+      }
+
+      :host(indent-2) {
+        margin-left: 2rem;
+      }
+
+      :host(indent-3) {
+        margin-left: 3rem;
+      }
+
+      :host(indent-4) {
+        margin-left: 4rem;
+      }
+
+      :host(indent-5) {
+        margin-left: 5rem;
+      }
+
+      :host(indent-6) {
+        margin-left: 6rem;
+      }
+
+      :host(indent-7) {
+        margin-left: 7rem;
+      }
+
+      :host(indent-8) {
+        margin-left: 8rem;
+      }
+
+      :host(indent-9) {
+        margin-left: 9rem;
+      }
+
+      :host(indent-10) {
+        margin-left: 10rem;
+      }
+    `,
+  ],
 })
-export class Indent {
-  level = input<IndentLevelType>(1);
-}
+export class Indent {}

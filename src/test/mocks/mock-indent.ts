@@ -1,6 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component } from '@angular/core';
 
-@Component({ selector: 'prb-indent', template: `` })
-export class MockIndent {
-  level = input<1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9>(1);
-}
+@Component({
+  selector:
+    'indent-1, indent-2, indent-3, indent-4, indent-5, indent-6, indent-8, indent-9, indent-10',
+  template: ``,
+})
+export class MockIndent {}
