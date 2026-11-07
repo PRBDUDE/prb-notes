@@ -3,9 +3,14 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'key-word',
   imports: [],
-  template: `
-    <ng-content></ng-content>
+  template: ` <ng-content></ng-content> `,
+  styles: `
+    :host {
+      display: inline;
+      font-size: inherit;
+      color: var(--color-key-word);
+      background: transparent;
+    }
   `,
-  styleUrl: './key-word.scss',
 })
 export class KeyWord {}
