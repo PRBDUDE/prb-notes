@@ -3,9 +3,14 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'prb-string',
   imports: [],
-  template: `
-    <ng-content></ng-content>
+  template: ` <ng-content></ng-content> `,
+  styles: `
+    :host {
+      display: inline;
+      font-size: inherit;
+      color: var(--color-string);
+      background: transparent;
+    }
   `,
-  styleUrl: './string.scss',
 })
 export class String {}
