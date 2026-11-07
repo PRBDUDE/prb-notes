@@ -3,9 +3,19 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'code-text',
   imports: [],
-  template: `
-    <ng-content></ng-content>
+  template: ` <ng-content></ng-content> `,
+  styles: `
+    :host {
+      display: inline;
+      font-size: inherit;
+      font-weight: 500;
+      font-family: 'Microsoft Sans Serif', sans-serif;
+      color: var(--color-code-text-text);
+      background: var(--color-code-text-background);
+      padding: 2px 0.4em;
+      border-radius: 8px;
+      text-wrap: nowrap;
+    }
   `,
-  styleUrl: './code-text.scss',
 })
 export class CodeText {}
