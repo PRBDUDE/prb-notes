@@ -3,7 +3,13 @@ import { Component, input } from '@angular/core';
 @Component({
   imports: [],
   selector: 'note-section',
-  styleUrl: './note-section.scss',
+  styles: `
+    :host {
+      display: block;
+      margin: 0 auto;
+      min-height: calc(var(--content-height) - 2em);
+    }
+  `,
   template: `
     <div class="note-section-description">
       {{ description() }}
@@ -13,7 +19,7 @@ import { Component, input } from '@angular/core';
   host: {
     class: 'note-section',
     role: 'container',
-    '[id]': 'tagName()'
+    '[id]': 'tagName()',
   },
 })
 export class NoteSection {
