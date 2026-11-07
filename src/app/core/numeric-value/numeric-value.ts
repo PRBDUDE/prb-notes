@@ -4,6 +4,13 @@ import { Component } from '@angular/core';
   selector: 'numeric-value',
   imports: [],
   template: `<ng-content></ng-content>`,
-  styleUrl: './numeric-value.scss',
+  styles: `
+    :host {
+      display: inline;
+      font-size: inherit;
+      color: var(--color-number-value);
+      background: transparent;
+    }
+  `,
 })
 export class NumericValue {}
