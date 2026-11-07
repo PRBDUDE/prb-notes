@@ -3,9 +3,14 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'class-name',
   imports: [],
-  template: `
-    <ng-content></ng-content>
+  template: ` <ng-content></ng-content> `,
+  styles: `
+    :host {
+      display: inline;
+      font-size: inherit;
+      color: var(--color-class-name);
+      background: transparent;
+    }
   `,
-  styleUrl: './class-name.scss',
 })
 export class ClassName {}
