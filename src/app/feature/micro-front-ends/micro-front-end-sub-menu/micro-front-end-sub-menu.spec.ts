@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MicroFrontEndSubMenu } from './micro-front-end-sub-menu';
 import { describe, beforeEach, it, expect } from 'vitest';
+import { provideRouter } from '@angular/router';
 
 describe('MicroFrontEndSubMenu', () => {
   let component: MicroFrontEndSubMenu;
@@ -9,6 +10,9 @@ describe('MicroFrontEndSubMenu', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MicroFrontEndSubMenu],
+      providers: [
+        provideRouter([])
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MicroFrontEndSubMenu);

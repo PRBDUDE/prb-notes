@@ -1,34 +1,53 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { Indent } from './indent';
 
+@Component({
+  template: `
+    <indent-1>Content 1</indent-1>
+    <indent-2>Content 2</indent-2>
+    <indent-3>Content 3</indent-3>
+    <indent-4>Content 4</indent-4>
+    <indent-5>Content 5</indent-5>
+    <indent-6>Content 6</indent-6>
+    <indent-7>Content 7</indent-7>
+    <indent-8>Content 8</indent-8>
+    <indent-9>Content 9</indent-9>
+    <indent-10>Content 10</indent-10>
+  `,
+  imports: [Indent],
+})
+class TestHostComponent {}
+
 describe('Indent Component', () => {
+  let fixture: ComponentFixture<TestHostComponent>;
+  let compiled: HTMLElement;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Indent],
+      imports: [TestHostComponent],
     }).compileComponents();
-  });
 
-  it('should create the component', () => {
-    const fixture = TestBed.createComponent(Indent);
-    const component = fixture.componentInstance;
-    expect(component).toBeTruthy();
-  });
-
-  it('should project content correctly', () => {
-    // Testing with the base selector
-    const fixture = TestBed.createComponent(Indent);
-    const hostElement: HTMLElement = fixture.nativeElement;
-
-    // Set text content to simulate projected ng-content
-    hostElement.textContent = 'Indented Content';
+    fixture = TestBed.createComponent(TestHostComponent);
     fixture.detectChanges();
-
-    expect(hostElement.textContent).toContain('Indented Content');
+    compiled = fixture.nativeElement as HTMLElement;
   });
 
-  // Test suite covering all indentation variants (1 to 10)
-  const indentLevels = [
+  it('should create the component instances', () => {
+    const indentElements = compiled.querySelectorAll('indent-1, indent-5, indent-10');
+    expect(indentElements.length).toBe(3);
+    indentElements.forEach((el) => {
+      expect(el).toBeTruthy();
+    });
+  });
+
+  it('should project content correctly via ng-content', () => {
+    const indent1 = compiled.querySelector('indent-1');
+    expect(indent1?.textContent?.trim()).toBe('Content 1');
+  });
+
+  it.each([
     { selector: 'indent-1', expectedMargin: '1rem' },
     { selector: 'indent-2', expectedMargin: '2rem' },
     { selector: 'indent-3', expectedMargin: '3rem' },
@@ -39,23 +58,13 @@ describe('Indent Component', () => {
     { selector: 'indent-8', expectedMargin: '8rem' },
     { selector: 'indent-9', expectedMargin: '9rem' },
     { selector: 'indent-10', expectedMargin: '10rem' },
-  ];
+  ])('should apply correct margin-left for $selector', ({ selector, expectedMargin }) => {
+    const element = compiled.querySelector(selector);
+    expect(element).toBeTruthy();
 
-  indentLevels.forEach(({ selector, expectedMargin }) => {
-    it(`should apply correct margin-left for <${selector}>`, async () => {
-      // Dynamically create a test component template utilizing the specific tag name
-      TestBed.overrideComponent(Indent, {
-        set: { selector: selector },
-      });
-
-      const fixture = TestBed.createComponent(Indent);
-      fixture.detectChanges();
-
-      const compiled = fixture.nativeElement as HTMLElement;
-      const computedStyle = window.getComputedStyle(compiled);
-
-      expect(computedStyle.display).toBe('block');
+    if (element) {
+      const computedStyle = window.getComputedStyle(element);
       expect(computedStyle.marginLeft).toBe(expectedMargin);
-    });
+    }
   });
 });

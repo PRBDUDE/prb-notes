@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { HomeLabSetup } from './home-lab-setup';
+import { provideRouter } from '@angular/router';
 
 describe('HomeLabSetup', () => {
   let component: HomeLabSetup;
@@ -9,6 +10,9 @@ describe('HomeLabSetup', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HomeLabSetup],
+      providers: [
+        provideRouter([])
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeLabSetup);

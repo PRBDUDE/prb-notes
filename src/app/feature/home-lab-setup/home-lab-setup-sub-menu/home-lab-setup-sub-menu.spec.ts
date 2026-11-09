@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeLabSetupSubMenu } from './home-lab-setup-sub-menu';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideRouter } from '@angular/router';
 
 describe('HomeLabSetupSubMenu', () => {
   let component: HomeLabSetupSubMenu;
@@ -11,7 +12,11 @@ describe('HomeLabSetupSubMenu', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HomeLabSetupSubMenu],
-      providers: [provideHttpClient(), provideHttpClientTesting()]
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideRouter([])
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeLabSetupSubMenu);

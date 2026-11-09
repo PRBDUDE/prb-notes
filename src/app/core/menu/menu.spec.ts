@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { describe, beforeEach, it, expect } from 'vitest';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 describe('Menu', () => {
   let component: Menu;
@@ -16,7 +17,8 @@ describe('Menu', () => {
       ],
       providers: [
         provideHttpClient(),
-        provideHttpClientTesting()
+        provideHttpClientTesting(),
+        provideRouter([])
       ]
     }).compileComponents();
 

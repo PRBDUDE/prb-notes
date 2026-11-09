@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, beforeEach, expect, it } from 'vitest';
 import { ServicesSubMenu } from './services-sub-menu';
+import { provideRouter } from '@angular/router';
 
 describe('ServicesSubMenu', () => {
   let component: ServicesSubMenu;
@@ -9,6 +10,9 @@ describe('ServicesSubMenu', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ServicesSubMenu],
+      providers: [
+        provideRouter([])
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ServicesSubMenu);
