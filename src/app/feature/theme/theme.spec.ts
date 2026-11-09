@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Theme } from './theme';
 import { ThemeSubMenu } from './theme-sub-menu/theme-sub-menu';
-import { CodeText } from '@core/code-text/code-text';
+import { CodeText } from '@core/code-text';
 import { MockThemeSubMenu } from '@mock/mock-theme-sub-menu';
 import { MockCodeText } from '@mock/mock-code-text';
 

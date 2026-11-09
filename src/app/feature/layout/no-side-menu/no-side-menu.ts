@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
+import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { LayoutSubMenu } from '../layout-sub-menu/layout-sub-menu';
 import { SubMenu } from './sub-menu/sub-menu';
 import { NoteSection } from '@core/note-section';

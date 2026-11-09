@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
-import { StarRating } from '@core/star-rating/star-rating';
-import { PainScaleSelector } from '@core/pain-scale-selector/pain-scale-selector';
+import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
+import { StarRating } from '@core/star-rating';
+import { PainScaleSelector } from '@core/pain-scale-selector';
 
 @Component({
   selector: 'prb-home',

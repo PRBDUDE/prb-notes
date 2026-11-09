@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
+import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { HomeLabSetupSubMenu } from '../home-lab-setup-sub-menu/home-lab-setup-sub-menu';
-import { JellyContainer } from '@core/jelly-container/jelly-container';
-import { QuestionContainer } from '@core/question-container/question-container';
-import { AnswerContainer } from '@core/answer-container/answer-container';
-import { CodeText } from '@core/code-text/code-text';
+import { JellyContainer } from '@core/jelly-container';
+import { QuestionContainer } from '@core/question-container';
+import { AnswerContainer } from '@core/answer-container';
+import { CodeText } from '@core/code-text';
 
 @Component({
   selector: 'prb-how-to-setup-home-lab',

@@ -7,10 +7,10 @@ import { MockQuestionContainer } from '@mock/mock-question-container';
 import { MockAnswerContainer } from '@mock/mock-answer-container';
 import { MockCodeText } from '@mock/mock-code-text';
 import { HomeLabSetupSubMenu } from '../home-lab-setup-sub-menu/home-lab-setup-sub-menu';
-import { JellyContainer } from '@core/jelly-container/jelly-container';
-import { QuestionContainer } from '@core/question-container/question-container';
-import { AnswerContainer } from '@core/answer-container/answer-container';
-import { CodeText } from '@core/code-text/code-text';
+import { JellyContainer } from '@core/jelly-container';
+import { QuestionContainer } from '@core/question-container';
+import { AnswerContainer } from '@core/answer-container';
+import { CodeText } from '@core/code-text';
 
 describe('HowToSetupHomeLab', () => {
   let component: HowToSetupHomeLab;

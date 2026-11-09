@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ThemeSubMenu } from './theme-sub-menu/theme-sub-menu';
-import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
-import { CodeText } from '@core/code-text/code-text';
+import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
+import { CodeText } from '@core/code-text';
 
 @Component({
   selector: 'prb-theme',

@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
+import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { HomeLabSetupSubMenu } from '../home-lab-setup-sub-menu/home-lab-setup-sub-menu';
-import { JellyContainer } from '@core/jelly-container/jelly-container';
-import { QuestionContainer } from '@core/question-container/question-container';
-import { AnswerContainer } from '@core/answer-container/answer-container';
-import { CodeText } from '@core/code-text/code-text';
-import { CardContainer } from '@core/card-container/card-container';
-import { CardHeader } from '@core/card-header/card-header';
-import { CardBody } from '@core/card-body/card-body';
-import { BlockQuote } from '@core/block-quote/block-quote';
-import { ClassName } from '@core/class-name/class-name';
-import { HtmlTag } from '@core/html-tag/html-tag';
-import { String } from '@core/string/string';
+import { JellyContainer } from '@core/jelly-container';
+import { QuestionContainer } from '@core/question-container';
+import { AnswerContainer } from '@core/answer-container';
+import { CodeText } from '@core/code-text';
+import { CardContainer } from '@core/card-container';
+import { CardHeader } from '@core/card-header';
+import { CardBody } from '@core/card-body';
+import { BlockQuote } from '@core/block-quote';
+import { ClassName } from '@core/class-name';
+import { HtmlTag } from '@core/html-tag';
+import { String } from '@core/string';
 
 @Component({
   selector: 'prb-setup-ssh',

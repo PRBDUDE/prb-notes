@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { CardContainer } from '@core/card-container/card-container';
-import { CardBody } from '@core/card-body/card-body';
-import { CardHeader } from '@core/card-header/card-header';
+import { CardContainer } from '@core/card-container';
+import { CardBody } from '@core/card-body';
+import { CardHeader } from '@core/card-header';
 import { CssContent } from '@css-class/css-content';
 import { CssFooter } from '@css-class/css-footer';
 import { CssHeader } from '@css-class/css-header';
@@ -11,7 +11,7 @@ import { CssBothSideMenuLayout } from '@css-class/css-both-side-menu-layout';
 import { SubMenu } from '../sub-menu/sub-menu';
 import { LayoutSubMenu } from '../../layout-sub-menu/layout-sub-menu';
 import { LayoutLeftAndRightMenuContent } from '@layout/layout-left-and-right-menu-content';
-import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
+import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { CssRightMenu } from '@css-class/css-right-menu';
 
 @Component({

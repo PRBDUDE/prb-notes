@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
 import { ServicesSubMenu } from '../services-sub-menu/services-sub-menu';
-import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
-import { JellyContainer } from '@core/jelly-container/jelly-container';
-import { QuestionContainer } from '@core/question-container/question-container';
-import { AnswerContainer } from '@core/answer-container/answer-container';
-import { CodeText } from '@core/code-text/code-text';
-import { CardContainer } from '@core/card-container/card-container';
-import { CardHeader } from '@core/card-header/card-header';
-import { CardBody } from '@core/card-body/card-body';
-import { KeyWord } from '@core/key-word/key-word';
-import { String } from '@core/string/string';
-import { ClassName } from '@core/class-name/class-name';
-import { MethodName } from '@core/method-name/method-name';
-import { Comment } from '@core/comment/comment';
-import { Property } from '@core/property/property';
+import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
+import { JellyContainer } from '@core/jelly-container';
+import { QuestionContainer } from '@core/question-container';
+import { AnswerContainer } from '@core/answer-container';
+import { CodeText } from '@core/code-text';
+import { CardContainer } from '@core/card-container';
+import { CardHeader } from '@core/card-header';
+import { CardBody } from '@core/card-body';
+import { KeyWord } from '@core/key-word';
+import { String } from '@core/string';
+import { ClassName } from '@core/class-name';
+import { MethodName } from '@core/method-name';
+import { Comment } from '@core/comment';
+import { Property } from '@core/property';
 import { tokenize } from '@core/parser/typescript/tokenizer';
-import { Indent } from '@core/indent/indent';
+import { Indent } from '@core/indent';
 
 @Component({
   selector: 'prb-idle-service',

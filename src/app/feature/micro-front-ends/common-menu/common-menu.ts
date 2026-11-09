@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
+import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { MicroFrontEndSubMenu } from '../micro-front-end-sub-menu/micro-front-end-sub-menu';
-import { Note } from '@core/note/note';
-import { HtmlTag } from '@core/html-tag/html-tag';
-import { JellyContainer } from '@core/jelly-container/jelly-container';
-import { QuestionContainer } from '@core/question-container/question-container';
-import { AnswerContainer } from '@core/answer-container/answer-container';
-import { Indent } from '@core/indent/indent';
+import { Note } from '@core/note';
+import { HtmlTag } from '@core/html-tag';
+import { JellyContainer } from '@core/jelly-container';
+import { QuestionContainer } from '@core/question-container';
+import { AnswerContainer } from '@core/answer-container';
+import { Indent } from '@core/indent';
 
 @Component({
   selector: 'prb-common-menu',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LayoutSubMenu } from './layout-sub-menu/layout-sub-menu';
-import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
+import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { LayoutViewer } from './layout-viewer/layout-viewer';
 
 @Component({

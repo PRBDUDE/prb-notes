@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BasePageWithSubtitle } from '@core/base-page-with-subtitle/base-page-with-subtitle';
+import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { HomeLabSetupSubMenu } from './home-lab-setup-sub-menu/home-lab-setup-sub-menu';
 
 @Component({
