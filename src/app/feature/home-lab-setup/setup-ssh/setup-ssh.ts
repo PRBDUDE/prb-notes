@@ -4,14 +4,10 @@ import { HomeLabSetupSubMenu } from '../home-lab-setup-sub-menu/home-lab-setup-s
 import { JellyContainer } from '@core/jelly-container';
 import { QuestionContainer } from '@core/question-container';
 import { AnswerContainer } from '@core/answer-container';
-import { CodeText } from '@core/code-text';
 import { CardContainer } from '@core/card-container';
 import { CardHeader } from '@core/card-header';
 import { CardBody } from '@core/card-body';
-import { BlockQuote } from '@core/block-quote';
-import { ClassName } from '@core/class-name';
-import { HtmlTag } from '@core/html-tag';
-import { String } from '@core/string';
+import { CodeColors } from '@core/code-colors';
 
 @Component({
   selector: 'prb-setup-ssh',
@@ -20,14 +16,10 @@ import { String } from '@core/string';
     JellyContainer,
     QuestionContainer,
     AnswerContainer,
-    CodeText,
     CardContainer,
     CardHeader,
     CardBody,
-    BlockQuote,
-    ClassName,
-    HtmlTag,
-    String,
+    CodeColors,
   ],
   templateUrl: './setup-ssh.html',
   styleUrl: '../home-lab-setup.scss',

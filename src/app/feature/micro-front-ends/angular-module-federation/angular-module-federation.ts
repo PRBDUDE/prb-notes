@@ -7,15 +7,7 @@ import { AnswerContainer } from '@core/answer-container';
 import { CardContainer } from '@core/card-container';
 import { CardHeader } from '@core/card-header';
 import { CardBody } from '@core/card-body';
-import { Comment } from '@core/comment';
-import { ClassName } from '@core/class-name';
-import { String } from '@core/string';
-import { CodeText } from '@core/code-text';
-import { BlockQuote } from '@core/block-quote';
-import { Note } from '@core/note';
-import { Property } from '@core/property';
-import { KeyWord } from '@core/key-word';
-import { MethodName } from '@core/method-name';
+import { CodeColors } from '@core/code-colors';
 import { Indent } from '@core/indent';
 
 @Component({
@@ -28,15 +20,7 @@ import { Indent } from '@core/indent';
     CardContainer,
     CardHeader,
     CardBody,
-    Comment,
-    ClassName,
-    String,
-    CodeText,
-    BlockQuote,
-    Note,
-    Property,
-    KeyWord,
-    MethodName,
+    CodeColors,
     Indent,
   ],
   templateUrl: './angular-module-federation.html',

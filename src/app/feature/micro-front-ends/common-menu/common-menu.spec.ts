@@ -12,8 +12,7 @@ import { MockQuestionContainer } from '@mock/mock-question-container';
 import { MockAnswerContainer } from '@mock/mock-answer-container';
 import { MockIndent } from '@mock/mock-indent';
 import { MicroFrontEndSubMenu } from '../micro-front-end-sub-menu/micro-front-end-sub-menu';
-import { Note } from '@core/note';
-import { HtmlTag } from '@core/html-tag';
+import { CodeColors } from '@core/code-colors';
 import { MockMicroFrontEndSubMenu } from '@mock/mock-micro-front-end-sub-menu';
 import { MockNote } from '@mock/mock-note';
 import { MockHtmlTag } from '@mock/mock-html-tag';
@@ -31,8 +30,7 @@ describe('CommonMenu', () => {
         remove: {
           imports: [
             MicroFrontEndSubMenu,
-            Note,
-            HtmlTag,
+            CodeColors,
             JellyContainer,
             QuestionContainer,
             AnswerContainer,

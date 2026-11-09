@@ -22,6 +22,7 @@
         "./src/app/core/card-container/*",
         "./src/app/core/card-header/*",
         "./src/app/core/class-name/*",
+        "./src/app/core/code-colors/*",
         "./src/app/core/code-text/*",
         "./src/app/core/comment/*",
         "./src/app/core/footer/*",

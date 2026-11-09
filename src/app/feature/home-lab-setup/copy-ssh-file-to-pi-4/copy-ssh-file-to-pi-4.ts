@@ -4,12 +4,10 @@ import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { AnswerContainer } from '@core/answer-container';
 import { JellyContainer } from '@core/jelly-container';
 import { QuestionContainer } from '@core/question-container';
-import { CodeText } from '@core/code-text';
 import { CardBody } from '@core/card-body';
 import { CardHeader } from '@core/card-header';
 import { CardContainer } from '@core/card-container';
-import { BlockQuote } from '@core/block-quote';
-import { ClassName } from '@core/class-name';
+import { CodeColors } from '@core/code-colors';
 
 @Component({
   selector: 'prb-copy-ssh-file-to-pi-4',
@@ -18,12 +16,10 @@ import { ClassName } from '@core/class-name';
     JellyContainer,
     QuestionContainer,
     HomeLabSetupSubMenu,
-    CodeText,
     CardBody,
     CardHeader,
     CardContainer,
-    BlockQuote,
-    ClassName,
+    CodeColors,
   ],
   templateUrl: './copy-ssh-file-to-pi-4.html',
   styleUrl: '../home-lab-setup.scss',

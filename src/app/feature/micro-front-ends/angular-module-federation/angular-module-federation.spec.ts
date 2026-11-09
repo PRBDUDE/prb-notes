@@ -9,10 +9,7 @@ import { QuestionContainer } from '@core/question-container';
 import { CardContainer } from '@core/card-container';
 import { CardHeader } from '@core/card-header';
 import { CardBody } from '@core/card-body';
-import { Comment } from '@core/comment';
-import { CodeText } from '@core/code-text';
-import { BlockQuote } from '@core/block-quote';
-import { ClassName } from '@core/class-name';
+import { CodeColors } from '@core/code-colors';
 import { MockAnswerContainer } from '@mock/mock-answer-container';
 import { MockJellyContainer } from '@mock/mock-jelly-container';
 import { MockQuestionContainer } from '@mock/mock-question-container';
@@ -25,15 +22,10 @@ import { MockClassName } from '@mock/mock-class-name';
 import { MicroFrontEndSubMenu } from '../micro-front-end-sub-menu/micro-front-end-sub-menu';
 import { MockMicroFrontEndSubMenu } from '@mock/mock-micro-front-end-sub-menu';
 import { MockComment } from '@mock/mock-comment';
-import { String } from '@core/string';
-import { Note } from '@core/note';
 import { MockString } from '@mock/mock-string';
 import { MockNote } from '@mock/mock-note';
-import { Property } from '@core/property';
 import { MockProperty } from '@mock/mock-property';
-import { KeyWord } from '@core/key-word';
 import { MockKeyWord } from '@mock/mock-key-word';
-import { MethodName } from '@core/method-name';
 import { MockMethodName } from '@mock/mock-method-name';
 import { Indent } from '@core/indent';
 import { MockIndent } from '@mock/mock-indent';
@@ -58,14 +50,7 @@ describe('AngularModuleFederation', () => {
             CardHeader,
             CardBody,
             Comment,
-            ClassName,
-            String,
-            CodeText,
-            BlockQuote,
-            Note,
-            Property,
-            KeyWord,
-            MethodName,
+            CodeColors,
             Indent,
           ],
         },

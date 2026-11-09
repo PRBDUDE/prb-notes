@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { MicroFrontEndSubMenu } from '../micro-front-end-sub-menu/micro-front-end-sub-menu';
-import { Note } from '@core/note';
-import { HtmlTag } from '@core/html-tag';
+import { CodeColors } from '@core/code-colors';
 import { JellyContainer } from '@core/jelly-container';
 import { QuestionContainer } from '@core/question-container';
 import { AnswerContainer } from '@core/answer-container';
@@ -12,8 +11,7 @@ import { Indent } from '@core/indent';
   selector: 'prb-common-menu',
   imports: [
     MicroFrontEndSubMenu,
-    Note,
-    HtmlTag,
+    CodeColors,
     JellyContainer,
     QuestionContainer,
     AnswerContainer,

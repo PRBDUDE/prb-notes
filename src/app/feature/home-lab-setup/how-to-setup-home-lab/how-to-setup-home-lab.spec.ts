@@ -10,7 +10,7 @@ import { HomeLabSetupSubMenu } from '../home-lab-setup-sub-menu/home-lab-setup-s
 import { JellyContainer } from '@core/jelly-container';
 import { QuestionContainer } from '@core/question-container';
 import { AnswerContainer } from '@core/answer-container';
-import { CodeText } from '@core/code-text';
+import { CodeColors } from '@core/code-colors';
 
 describe('HowToSetupHomeLab', () => {
   let component: HowToSetupHomeLab;
@@ -22,7 +22,13 @@ describe('HowToSetupHomeLab', () => {
     })
       .overrideComponent(HowToSetupHomeLab, {
         remove: {
-          imports: [HomeLabSetupSubMenu, JellyContainer, QuestionContainer, AnswerContainer, CodeText],
+          imports: [
+            HomeLabSetupSubMenu,
+            JellyContainer,
+            QuestionContainer,
+            AnswerContainer,
+            CodeColors,
+          ],
         },
         add: {
           imports: [

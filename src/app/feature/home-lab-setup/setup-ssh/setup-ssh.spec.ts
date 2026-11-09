@@ -8,11 +8,7 @@ import { HomeLabSetupSubMenu } from '../home-lab-setup-sub-menu/home-lab-setup-s
 import { CardContainer } from '@core/card-container';
 import { CardHeader } from '@core/card-header';
 import { CardBody } from '@core/card-body';
-import { CodeText } from '@core/code-text';
-import { BlockQuote } from '@core/block-quote';
-import { ClassName } from '@core/class-name';
-import { HtmlTag } from '@core/html-tag';
-import { String } from '@core/string';
+import { CodeColors } from '@core/code-colors';
 import { MockAnswerContainer } from '@mock/mock-answer-container';
 import { MockJellyContainer } from '@mock/mock-jelly-container';
 import { MockQuestionContainer } from '@mock/mock-question-container';
@@ -45,11 +41,7 @@ describe('SetupSsh', () => {
             CardContainer,
             CardHeader,
             CardBody,
-            CodeText,
-            BlockQuote,
-            ClassName,
-            HtmlTag,
-            String,
+            CodeColors,
           ],
         },
         add: {

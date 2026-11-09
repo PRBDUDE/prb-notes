@@ -11,9 +11,7 @@ import { QuestionContainer } from '@core/question-container';
 import { CardContainer } from '@core/card-container';
 import { CardHeader } from '@core/card-header';
 import { CardBody } from '@core/card-body';
-import { CodeText } from '@core/code-text';
-import { BlockQuote } from '@core/block-quote';
-import { ClassName } from '@core/class-name';
+import { CodeColors } from '@core/code-colors';
 import { MockAnswerContainer } from '@mock/mock-answer-container';
 import { MockJellyContainer } from '@mock/mock-jelly-container';
 import { MockQuestionContainer } from '@mock/mock-question-container';
@@ -44,9 +42,7 @@ describe('CopySshFileToPi4', () => {
             CardContainer,
             CardHeader,
             CardBody,
-            CodeText,
-            BlockQuote,
-            ClassName,
+            CodeColors,
           ],
         },
         add: {

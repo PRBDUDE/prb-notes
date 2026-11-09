@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CodeColors } from './code-colors';
 
-import { NumericValue } from './numeric-value';
-
-describe('NumericValue', () => {
-  let component: NumericValue;
-  let fixture: ComponentFixture<NumericValue>;
+describe('CodeColors', () => {
+  let component: CodeColors;
+  let fixture: ComponentFixture<CodeColors>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NumericValue],
+      imports: [CodeColors],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NumericValue);
+    fixture = TestBed.createComponent(CodeColors);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

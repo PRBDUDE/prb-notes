@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { MicroFrontEndSubMenu } from './micro-front-end-sub-menu/micro-front-end-sub-menu';
-import { CodeText } from '@core/code-text';
+import { CodeColors } from '@core/code-colors';
 
 @Component({
   selector: 'prb-micro-front-ends',
-  imports: [MicroFrontEndSubMenu, CodeText],
+  imports: [MicroFrontEndSubMenu, CodeColors],
   templateUrl: './micro-front-ends.html',
   styleUrl: './micro-front-ends.scss',
 })

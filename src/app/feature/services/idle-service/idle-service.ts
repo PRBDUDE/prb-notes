@@ -4,16 +4,10 @@ import { BasePageWithSubtitle } from '@core/base-page-with-subtitle';
 import { JellyContainer } from '@core/jelly-container';
 import { QuestionContainer } from '@core/question-container';
 import { AnswerContainer } from '@core/answer-container';
-import { CodeText } from '@core/code-text';
 import { CardContainer } from '@core/card-container';
 import { CardHeader } from '@core/card-header';
 import { CardBody } from '@core/card-body';
-import { KeyWord } from '@core/key-word';
-import { String } from '@core/string';
-import { ClassName } from '@core/class-name';
-import { MethodName } from '@core/method-name';
-import { Comment } from '@core/comment';
-import { Property } from '@core/property';
+import { CodeColors } from '@core/code-colors';
 import { tokenize } from '@core/parser/typescript/tokenizer';
 import { Indent } from '@core/indent';
 
@@ -24,16 +18,10 @@ import { Indent } from '@core/indent';
     JellyContainer,
     QuestionContainer,
     AnswerContainer,
-    CodeText,
     CardContainer,
     CardHeader,
     CardBody,
-    KeyWord,
-    String,
-    ClassName,
-    MethodName,
-    Comment,
-    Property,
+    CodeColors,
     Indent,
   ],
   templateUrl: './idle-service.html',

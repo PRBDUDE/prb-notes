@@ -7,9 +7,7 @@ import { QuestionContainer } from '@core/question-container';
 import { CardContainer } from '@core/card-container';
 import { CardHeader } from '@core/card-header';
 import { CardBody } from '@core/card-body';
-import { CodeText } from '@core/code-text';
-import { BlockQuote } from '@core/block-quote';
-import { ClassName } from '@core/class-name';
+import { CodeColors } from '@core/code-colors';
 
 @Component({
   selector: 'prb-copy-ssh-file-to-pi-3',
@@ -21,9 +19,7 @@ import { ClassName } from '@core/class-name';
     CardContainer,
     CardHeader,
     CardBody,
-    CodeText,
-    BlockQuote,
-    ClassName,
+    CodeColors,
   ],
   templateUrl: './copy-ssh-file-to-pi-3.html',
   styleUrl: '../home-lab-setup.scss',
