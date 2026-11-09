@@ -87,7 +87,7 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "runnerConfig": "src/test/vitest.config.ts"
+            "runnerConfig": "src/test/vitest.config.mts"
           }
         }
       }
